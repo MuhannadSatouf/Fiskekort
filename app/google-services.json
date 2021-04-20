@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "346476912680",
+    "project_id": "fiskekort-7b973",
+    "storage_bucket": "fiskekort-7b973.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:346476912680:android:4158d4a469f1817f96d51d",
+        "android_client_info": {
+          "package_name": "com.example.fiskekort"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "346476912680-nlh90ddthal8cbnff7f3g7ompaqlslk5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAd89O4LK5VJZDPK-YlKSAsp182QyeTSXM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "346476912680-nlh90ddthal8cbnff7f3g7ompaqlslk5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
