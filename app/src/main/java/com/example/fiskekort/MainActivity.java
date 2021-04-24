@@ -19,11 +19,12 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-   private EditText editTextEmail, editTextPassword;
-   private TextView registration;
-   private Button button;
-   private ProgressBar progressBar;
-   private FirebaseAuth mAuth;
+    private EditText editTextEmail, editTextPassword;
+    private TextView registration;
+    private Button button;
+    private ProgressBar progressBar;
+    private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,24 +38,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         progressBar = findViewById(R.id.progressBarLogin);
         mAuth = FirebaseAuth.getInstance();
     }//Onclicklistner =)
- @Override
-public void onClick(View v) {
-    switch (v.getId()){
-        // this is the buttons for the login page
-        case R.id.loginButton:
-            login();
-            break;
 
-        case R.id.textNoAccount:
-            registration();
-            break;
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            // this is the buttons for the login page
+            case R.id.loginButton:
+                login();
+                break;
 
+            case R.id.textNoAccount:
+                registration();
+                break;
 
-
-    }
+        }
 
 //login method
-}
+    }
+
     private void login() {
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
@@ -88,7 +89,7 @@ public void onClick(View v) {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isComplete()) {
                     Toast.makeText(MainActivity.this, "you have successful login!", Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(MainActivity.this, MainActivity.class));
+                    startActivity(new Intent(MainActivity.this, Fishing_card_activity.class));
                     progressBar.setVisibility(View.INVISIBLE);
 
 
@@ -99,7 +100,7 @@ public void onClick(View v) {
 
             }
         });
-    }//method to pass over to el registratione
+    }//method to pass over to el registration
 
     public void registration() {
         // register new user

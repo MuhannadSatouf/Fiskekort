@@ -9,7 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FiskeKort">
-        <activity android:name=".Register"></activity>
+        <activity android:name=".Fishing_card_activity"></activity>
+        <activity
+            android:name=".create_fishing_card_activity"
+            android:label="@string/title_activity_create_fishing_card_activity"
+            android:theme="@style/Theme.FiskeKort.NoActionBar" />
+        <activity android:name=".Create_fishing_card_activity" />
+        <activity android:name=".Register" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
