@@ -13,6 +13,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.fiskekort.license.Licence;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -21,7 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private EditText editTextEmail, editTextPassword;
     private TextView registration;
-    private Button button;
+    private Button button, license;
     private ProgressBar progressBar;
     private FirebaseAuth mAuth;
 
@@ -37,7 +38,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         registration.setOnClickListener(this);
         progressBar = findViewById(R.id.progressBarLogin);
         mAuth = FirebaseAuth.getInstance();
+
+        testLicense();
     }//Onclicklistner =)
+
+    private void testLicense() {
+        license = findViewById(R.id.main_open_license);
+        license.setOnClickListener(v -> {
+            Intent intent = new Intent(this, Licence.class);
+            startActivity(intent);
+        });
+    }
 
     @Override
     public void onClick(View v) {

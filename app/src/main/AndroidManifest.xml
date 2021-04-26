@@ -10,7 +10,7 @@
         android:supportsRtl="true">
 <!--        Please dont use global theme because some activities may require different theme and your global just overrides it, use: android:theme="@style/*some theme* for each activity" -->
         <activity
-            android:name=".Licence"
+            android:name=".license.Licence"
             android:theme="@style/Licence_AppTheme" />
         <activity android:name=".Fishing_card_activity" />
         <activity

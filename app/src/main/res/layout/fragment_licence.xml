@@ -4,28 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/licence_Primary"
-    tools:context=".LicenceFragment">
+    android:orientation="vertical"
+    tools:context=".license.LicenceFragment">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sort by"
-        android:textSize="13sp"
         android:layout_gravity="end"
-        android:paddingEnd="16dp"
-        android:paddingStart="16dp"
+        android:drawableStart="@drawable/ic_sort"
         android:drawablePadding="8dp"
+        android:paddingStart="16dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="8dp"
+        android:text="Sort by"
         android:textColor="@android:color/darker_gray"
-        android:drawableStart="@drawable/ic_sort"/>
+        android:textSize="13sp" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/licence_recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/license_items"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:spanCount="2"
         tools:itemCount="6"
-        android:id="@+id/licence_recycler"/>
+        tools:listitem="@layout/license_items" />
 </LinearLayout>
