@@ -7,9 +7,11 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/Theme.FiskeKort">
-        <activity android:name=".Licence"></activity>
+        android:supportsRtl="true">
+<!--        Please dont use global theme because some activities may require different theme and your global just overrides it, use: android:theme="@style/*some theme* for each activity" -->
+        <activity
+            android:name=".Licence"
+            android:theme="@style/Licence_AppTheme" />
         <activity android:name=".Fishing_card_activity" />
         <activity
             android:name=".create_fishing_card_activity"
@@ -17,7 +19,9 @@
             android:theme="@style/Theme.FiskeKort.NoActionBar" />
         <activity android:name=".Create_fishing_card_activity" />
         <activity android:name=".Register" />
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/Theme.FiskeKort">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

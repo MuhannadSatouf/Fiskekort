@@ -22,4 +22,10 @@
     <style name="Theme.FiskeKort.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.FiskeKort.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Licence_AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/licence_Primary</item>
+        <item name="colorPrimaryDark">@color/licence_PrimaryDark</item>
+        <item name="colorAccent">@color/licence_Accent</item>
+    </style>
 </resources>
