@@ -10,14 +10,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-
-
         android:theme="@style/Theme.FiskeKort">
-        <activity android:name="com.example.fiskekort.Fishing_card_activity">
 
-        </activity>
-      
-
+        <activity
+            android:name="com.example.fiskekort.Fishing_card_activity"
             android:theme="@style/Theme.FiskeKort.NoActionBar" />
 
         <activity android:name="com.example.fiskekort.Register" />
