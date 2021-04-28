@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Licence_AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/licence_Primary</item>
+        <item name="colorPrimaryDark">@color/licence_PrimaryDark</item>
+        <item name="colorAccent">@color/licence_Accent</item>
+
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:statusBarColor">@color/licence_Primary</item>
+    </style>
+</resources>

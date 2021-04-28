@@ -105,4 +105,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginPassword" />
 
+    <Button
+        android:id="@+id/main_open_license"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Open License Activity"
+        app:layout_constraintTop_toBottomOf="@id/textNoAccount"
+        android:layout_marginTop="150dp"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
