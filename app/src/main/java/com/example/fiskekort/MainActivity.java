@@ -43,6 +43,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         testLicense();
     }//Onclicklistner =)
 
+    private void testLicense() {
+        license = findViewById(R.id.main_open_license);
+        license.setOnClickListener(v -> {
+            Intent intent = new Intent(this, Licence.class);
+            startActivity(intent);
+        });
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
