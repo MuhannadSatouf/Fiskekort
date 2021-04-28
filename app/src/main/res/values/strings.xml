@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">FiskeKort</string>
+    <string name="create_a_card">Create a card</string>
+    <string name="title_activity_create_fishing_card_activity">create_fishing_card_activity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="Create_card">Create fishing card</string>
+
+    <string-array name="period">
+        <item>One month</item>
+        <item>Six months </item>
+        <item>One year</item>
+
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="license_desc_skane">This is a license for Fishing in Skane region</string>
+</resources>

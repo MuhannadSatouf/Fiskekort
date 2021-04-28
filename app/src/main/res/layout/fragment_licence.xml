@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/licence_Primary"
+    android:orientation="vertical"
+
+    tools:context="com.example.fiskekort.license.LicenceFragment">
+
+    tools:context=".license.LicenceFragment">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:drawableStart="@drawable/ic_sort"
+        android:drawablePadding="8dp"
+        android:paddingStart="16dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="8dp"
+        android:text="Sort by"
+        android:textColor="@android:color/darker_gray"
+
+        android:textSize="13sp"
+        android:drawableLeft="@drawable/ic_sort" />
+
+        android:textSize="13sp" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/licence_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="2"
+        tools:itemCount="6"
+        tools:listitem="@layout/license_items" />
+</LinearLayout>
