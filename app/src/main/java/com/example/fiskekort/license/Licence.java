@@ -6,8 +6,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 
-
-import com.example.fiskekort.R;
+import com.satouf.fiskekort.R;
 
 
 public class Licence extends AppCompatActivity {

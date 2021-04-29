@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import com.satouf.fiskekort.R;
 
-import com.example.fiskekort.R;
+
 
 
 import java.util.ArrayList;

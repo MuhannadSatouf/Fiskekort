@@ -7,7 +7,8 @@
     android:background="@color/licence_Primary"
     android:orientation="vertical"
 
-    tools:context="com.example.fiskekort.license.LicenceFragment">
+    tools:context="com.example.fiskekort.license.LicenceFragment"
+    tools:ignore="ExtraText">
 
     tools:context=".license.LicenceFragment">
 
@@ -16,7 +17,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:drawableStart="@drawable/ic_sort"
         android:drawablePadding="8dp"
         android:paddingStart="16dp"
         android:paddingTop="8dp"
@@ -26,7 +26,7 @@
         android:textColor="@android:color/darker_gray"
 
         android:textSize="13sp"
-        android:drawableLeft="@drawable/ic_sort" />
+        />
 
         android:textSize="13sp" />
 

@@ -68,13 +68,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //login method
     }
 
-    private void testLicense() {
-        license = findViewById(R.id.main_open_license);
-        license.setOnClickListener(v -> {
-            Intent intent = new Intent(this, Licence.class);
-            startActivity(intent);
-        });
-    }
+
 
     private void login() {
         String email = editTextEmail.getText().toString().trim();
