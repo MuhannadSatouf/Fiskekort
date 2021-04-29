@@ -15,6 +15,7 @@ public class FishingCardTest {
 
     @Test
     public void setOwner() {
+        System.out.println("Unit Tests are being run");
         User testUser2 = new User();
         fc.setOwner(testUser2);
         assertEquals(testUser2, fc.getOwner());
