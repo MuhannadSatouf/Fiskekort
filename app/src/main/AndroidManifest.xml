@@ -30,7 +30,7 @@
 
         <activity android:name="com.example.fiskekort.Register" />
 
-        <activity android:name="com.example.fiskekort.MainActivity">
+        <activity android:name="com.example.fiskekort.MainActivity"/>
 
         <activity android:name=".Create_fishing_card_activity" />
         <activity android:name=".Register" />
