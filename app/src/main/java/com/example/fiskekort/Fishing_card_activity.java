@@ -12,7 +12,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.fiskekort.LocalDB.LocalDatabaseAdapter;
-import com.satouf.fiskekort.R;
+import com.example.fiskekort.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

@@ -11,8 +11,6 @@ android {
 
         applicationId "com.example.fiskekort"
         minSdkVersion 26
-        applicationId "com.example.fiskekort"
-        minSdkVersion 16
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"

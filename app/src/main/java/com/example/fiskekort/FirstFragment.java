@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.satouf.fiskekort.R;
+import com.example.fiskekort.R;
 
 public class FirstFragment extends Fragment {
 
