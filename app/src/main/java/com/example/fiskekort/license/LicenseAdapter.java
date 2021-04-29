@@ -11,11 +11,11 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.satouf.fiskekort.R;
-
-
+import com.example.fiskekort.R;
 
 import java.util.List;
+
+
 
 public class LicenseAdapter extends RecyclerView.Adapter<LicenseAdapter.LicenseViewHolder> {
     private List<LicenseModel> licenseModelList;

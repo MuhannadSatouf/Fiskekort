@@ -12,13 +12,12 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 
-import com.satouf.fiskekort.R;
-
-
-
+import com.example.fiskekort.R;
 
 import java.util.ArrayList;
 import java.util.List;
+
+
 
 /**
  * A simple {@link Fragment} subclass.

@@ -12,10 +12,12 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.fiskekort.LocalDB.LocalDatabaseAdapter;
-import com.satouf.fiskekort.R;
+
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
+
 
 public class Fishing_card_activity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private String startDate;

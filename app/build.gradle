@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
 
-        applicationId "com.satouf.fiskekort"
+        applicationId "com.example.fiskekort"
         minSdkVersion 26
         applicationId "com.example.fiskekort"
         minSdkVersion 23
@@ -39,12 +39,6 @@ android {
             // returns either null or zero when accessing platform APIs, rather than throwing an exception.
             returnDefaultValues true
 
-            // Encapsulates options for controlling how Gradle executes local unit tests. For a list
-            // of all the options you can specify, read Gradle's reference documentation.
-            all {
-                // Sets JVM argument(s) for the test JVM(s).
-                jvmArgs '-XX:MaxPermSize=256m'
-            }
         }
     }
 
