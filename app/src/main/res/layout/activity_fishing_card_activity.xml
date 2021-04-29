@@ -7,7 +7,7 @@
     android:background="@drawable/fishing_background"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".Fishing_card_activity">
+    tools:context="com.example.fiskekort.Fishing_card_activity">
 
 
     <LinearLayout
