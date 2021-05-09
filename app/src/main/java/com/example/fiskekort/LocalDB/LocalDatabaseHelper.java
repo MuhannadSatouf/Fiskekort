@@ -48,4 +48,13 @@ public class LocalDatabaseHelper extends SQLiteOpenHelper {
 
         }
     }
+
+    public Cursor viewData(){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = "select * from "+ TABLE_NAME;
+        Cursor cursor = db.rawQuery(query,null);
+        return cursor;
+
+    }
 }
