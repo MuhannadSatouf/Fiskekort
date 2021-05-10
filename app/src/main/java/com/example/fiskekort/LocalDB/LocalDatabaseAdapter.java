@@ -8,6 +8,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
 
+import com.example.fiskekort.FishingCard;
+
+import java.util.ArrayList;
+
 public class LocalDatabaseAdapter {
     private LocalDatabaseHelper localDatabaseHelper;
     private SQLiteDatabase sqLiteDatabase;
@@ -40,6 +44,30 @@ public class LocalDatabaseAdapter {
         }
         return buffer.toString();
     }
+
+    public ArrayList<FishingCard> getListOfData(){
+        ArrayList<FishingCard> cardList = new ArrayList<>();
+
+        sqLiteDatabase = localDatabaseHelper.getReadableDatabase();
+        String[] field = {localDatabaseHelper.CARD_ID,localDatabaseHelper.START_DATE,localDatabaseHelper.FINISH_DATE};
+        Cursor c = sqLiteDatabase.query(localDatabaseHelper.TABLE_NAME, field, null, null, null, null, null);
+
+        int id = c.getColumnIndex(localDatabaseHelper.CARD_ID);
+        int startDate = c.getColumnIndex(localDatabaseHelper.START_DATE);
+        int finishDate = c.getColumnIndex(localDatabaseHelper.FINISH_DATE);
+
+        for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()){
+            String cardId = c.getString(id);
+            String startDateString = c.getString(startDate);
+            String finishDateString = c.getString(finishDate);
+            cardList.add(new FishingCard(cardId, startDateString, finishDateString));
+
+        }
+
+        return cardList;
+    }
+
+
 
     public int delete(String uname) {
         SQLiteDatabase db = localDatabaseHelper.getWritableDatabase();

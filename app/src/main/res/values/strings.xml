@@ -12,6 +12,7 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="Create_card">Create fishing card</string>
+    <string name="map_key" translatable="false">AIzaSyCeUNROGMMFVNZC7BYUxKb0jV6aZLywS2w </string>
 
     <string-array name="period">
         <item>One month</item>
@@ -19,5 +20,9 @@
         <item>One year</item>
 
     </string-array>
+    <string name="title_activity_home">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Licences</string>
+    <string name="title_notifications">Map</string>
 
 </resources>

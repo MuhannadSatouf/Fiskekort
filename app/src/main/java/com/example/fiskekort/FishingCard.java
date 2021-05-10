@@ -17,6 +17,9 @@ public class FishingCard {
     }
 
     public FishingCard(String cardNumber, String startDate, String finishDate) {
+                this.cardNumber=cardNumber;
+                this.startDate=startDate;
+                this.finishDate=finishDate;
 
     }
 
