@@ -29,7 +29,7 @@ public class SLUDataBase extends AppCompatActivity {
 
 
 
-        Button Button2 = (Button) findViewById(R.id.ShowDataSlubt);
+        Button Button2 = (Button) findViewById(R.id.ShowSLUmap);
 
         Button2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
