@@ -10,7 +10,8 @@ public class FishingCardTest {
 
     @Test
     public void getOwner() {
-        assertEquals(testUser, fc.getOwner());
+
+        assertEquals(testUser,fc.getOwner());
     }
 
     @Test
@@ -20,4 +21,39 @@ public class FishingCardTest {
         fc.setOwner(testUser2);
         assertEquals(testUser2, fc.getOwner());
     }
+    @Test
+    public void setCardNumber(){
+        fc.setCardNumber("54321");
+        assertEquals("54321",fc.getCardNumber());
+    }
+    @Test
+    public void getCardNumber(){
+        fc.setCardNumber("54321");
+        assertEquals("54321",fc.getCardNumber());
+
+
+    }
+    @Test
+    public void setStartDate(){
+
+        assertEquals("today",fc.getStartDate());
+
+    }
+    @Test
+    public void getStartDate(){
+        fc.setStartDate("today");
+        assertEquals("today",fc.getStartDate());
+    }
+    @Test
+    public void setFinishDate(){
+        fc.setFinishDate("tomorrow");
+        assertEquals("tomorrow",fc.getFinishDate());
+    }
+    @Test
+    public void getFinishDate(){
+
+        assertEquals("tomorrow",fc.getFinishDate());
+    }
+
+
 }
