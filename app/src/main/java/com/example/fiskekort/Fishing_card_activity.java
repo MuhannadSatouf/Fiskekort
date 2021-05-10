@@ -3,6 +3,7 @@ package com.example.fiskekort;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -49,6 +50,17 @@ public class Fishing_card_activity extends AppCompatActivity implements AdapterV
                 }
             }
         });
+
+        //To the SluDataBase
+        Button btn = (Button) findViewById(R.id.SluDataBasebt);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent(Fishing_card_activity.this, SLUDataBase.class);
+                Fishing_card_activity.this.startActivity(myIntent);
+            }
+        });
+
     }
 
     public void initialize() {
