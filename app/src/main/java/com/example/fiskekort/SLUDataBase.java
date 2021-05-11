@@ -15,9 +15,9 @@ public class SLUDataBase extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_s_l_u_data_base);
 
-        Button Button1 = (Button) findViewById(R.id.ShowDataSlubt);
+        Button ShowDatabaseButton = (Button) findViewById(R.id.ShowDataSlubt);
 
-        Button1.setOnClickListener(new View.OnClickListener() {
+        ShowDatabaseButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_VIEW);
@@ -29,9 +29,9 @@ public class SLUDataBase extends AppCompatActivity {
 
 
 
-        Button Button2 = (Button) findViewById(R.id.ShowSLUmap);
+        Button ShowTheMapButton = (Button) findViewById(R.id.ShowSLUmap);
 
-        Button2.setOnClickListener(new View.OnClickListener() {
+        ShowTheMapButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_VIEW);
@@ -42,9 +42,9 @@ public class SLUDataBase extends AppCompatActivity {
         });
 
 
-        Button Button3 = (Button) findViewById(R.id.showTableBt);
+        Button ShowTheTableButton = (Button) findViewById(R.id.showTableBt);
 
-        Button3.setOnClickListener(new View.OnClickListener() {
+        ShowTheTableButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_VIEW);
