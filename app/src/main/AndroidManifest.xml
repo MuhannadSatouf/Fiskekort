@@ -15,7 +15,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FiskeKort">
-        <activity android:name=".SLUDataBase"/>
+
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -35,6 +35,9 @@
             android:name=".Fishing_card_activity"
             android:theme="@style/Theme.FiskeKort.NoActionBar" />
         <activity android:name=".Register" />
+        <activity android:name=".Purchase"/>
+        <activity android:name=".Buy" />
+        <activity android:name=".SLUDataBase" />
         <activity android:name=".HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

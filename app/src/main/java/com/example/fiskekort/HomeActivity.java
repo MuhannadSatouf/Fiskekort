@@ -29,6 +29,7 @@ public class HomeActivity extends AppCompatActivity{
     private Button button;
     private ProgressBar progressBar;
     private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,5 +45,10 @@ public class HomeActivity extends AppCompatActivity{
         NavigationUI.setupWithNavController(navView, navController);
 
 
-        mAuth = FirebaseAuth.getInstance();  }}
+        mAuth = FirebaseAuth.getInstance();
+
+
+    }
+}
+
 

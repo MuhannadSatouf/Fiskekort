@@ -30,7 +30,7 @@ public class NotificationsFragment extends Fragment implements OnMapReadyCallbac
     MapView mapView;
     GoogleMap mMap;
     ArrayList<LatLng>lakeList = new ArrayList<>();
-    String lakeName[];
+    String[] lakeName;
     private NotificationsViewModel notificationsViewModel;
 
     LatLng Borringsjon= new LatLng(55.485911608606564, 13.315884787005805);

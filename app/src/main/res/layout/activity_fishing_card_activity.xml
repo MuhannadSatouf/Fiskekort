@@ -7,7 +7,7 @@
     android:background="@drawable/fishing_background"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".Fishing_card_activity">
+    tools:context=".">
 
 
     <LinearLayout
@@ -62,5 +62,11 @@
         android:layout_width="145dp"
         android:layout_height="wrap_content"
         android:text="SLU DataBase" />
+
+    <Button
+        android:id="@+id/buyButton"
+        android:layout_width="152dp"
+        android:layout_height="wrap_content"
+        android:text="Buy License" />
 
 </LinearLayout>
