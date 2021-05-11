@@ -7,9 +7,6 @@
     tools:context=".ui.home.HomeFragment">
 
 
-
-
-
     <EditText
         android:id="@+id/loginPassword"
         android:layout_width="wrap_content"

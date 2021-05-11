@@ -4,6 +4,7 @@ package com.example.fiskekort;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 
 import android.os.Bundle;
@@ -50,6 +51,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         progressBar = findViewById(R.id.progressBar);
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -60,7 +62,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
             case R.id.textReturnToLogin:
                 finish();
                 break;
-
         }
     }
 
@@ -71,34 +72,29 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         String phoneNumber = editTextPhone.getText().toString().trim();
 
         if (name.isEmpty()) {
-            editTextfullname.setError("please provide you full name");
-            editTextfullname.requestFocus();
+            errorMessage(editTextfullname, "please provide you full name");
             return;
         }
 
         if (email.isEmpty()) {
-            editTextEmail.setError("please provide valid email");
-            editTextEmail.requestFocus();
+
+            errorMessage(editTextEmail, "please provide valid email");
             return;
 
         }
 
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            editTextEmail.setError("Please provide valid email");
-            editTextEmail.requestFocus();
+            errorMessage(editTextEmail, "Please provide valid email");
             return;
         }
 
-
         if (password.isEmpty()) {
-            editTextPassword.setError("Please provide Password");
-            editTextPassword.requestFocus();
+            errorMessage(editTextPassword, "Please provide Password");
             return;
         }
 
         if (password.length() < 8) {
-            editTextPassword.setError("min password length should be 8 characters");
-            editTextPassword.requestFocus();
+            errorMessage(editTextPassword, "min password length should be 8 characters");
             return;
         }
 
@@ -144,6 +140,11 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
     public void createToast(String text, Context context) {
         Toast.makeText(context, text, Toast.LENGTH_LONG).show();
+    }
+
+    public void errorMessage(EditText editText, String text) {
+        editText.setError(text);
+        editText.requestFocus();
     }
 }
 
