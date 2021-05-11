@@ -12,39 +12,46 @@
         android:id="@+id/oneDayButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="124dp"
         android:text="Buy 1 Day"
+        app:layout_constraintBottom_toTopOf="@+id/oneMonthButton"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="79dp"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toTopOf="parent"
+         />
 
     <Button
         android:id="@+id/oneMonthButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="216dp"
         android:text="Buy 1 Month"
+        app:layout_constraintBottom_toTopOf="@+id/sixMonthButton"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="262dp"
-        tools:ignore="MissingConstraints" />
+         />
 
     <Button
         android:id="@+id/sixMonthButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="108dp"
         android:text="Buy 6 Months"
+        app:layout_constraintBottom_toTopOf="@+id/yearButton"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="395dp"
-        tools:ignore="MissingConstraints" />
+         />
 
     <Button
         android:id="@+id/yearButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Buy 1 year"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="559dp"
-        tools:ignore="MissingConstraints" />
+         />
 </androidx.constraintlayout.widget.ConstraintLayout>
