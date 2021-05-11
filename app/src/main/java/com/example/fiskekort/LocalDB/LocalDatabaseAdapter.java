@@ -13,7 +13,7 @@ import com.example.fiskekort.FishingCard;
 import java.util.ArrayList;
 
 public class LocalDatabaseAdapter {
-    private LocalDatabaseHelper localDatabaseHelper;
+    private final LocalDatabaseHelper localDatabaseHelper;
     private SQLiteDatabase sqLiteDatabase;
 
 
@@ -26,20 +26,20 @@ public class LocalDatabaseAdapter {
         SQLiteDatabase dbb = localDatabaseHelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(LocalDatabaseHelper.START_DATE, start_date);
-        contentValues.put(localDatabaseHelper.FINISH_DATE, finish_date);
-        long id = dbb.insert(localDatabaseHelper.TABLE_NAME, null, contentValues);
+        contentValues.put(LocalDatabaseHelper.FINISH_DATE, finish_date);
+        long id = dbb.insert(LocalDatabaseHelper.TABLE_NAME, null, contentValues);
         return id;
     }
 
     public String getData() {
         SQLiteDatabase db = localDatabaseHelper.getWritableDatabase();
-        String[] columns = {localDatabaseHelper.CARD_ID, localDatabaseHelper.START_DATE, localDatabaseHelper.FINISH_DATE};
-        Cursor cursor = db.query(localDatabaseHelper.TABLE_NAME, columns, null, null, null, null, null);
+        String[] columns = {LocalDatabaseHelper.CARD_ID, LocalDatabaseHelper.START_DATE, LocalDatabaseHelper.FINISH_DATE};
+        Cursor cursor = db.query(LocalDatabaseHelper.TABLE_NAME, columns, null, null, null, null, null);
         StringBuffer buffer = new StringBuffer();
         while (cursor.moveToNext()) {
-            int card_id = cursor.getInt(cursor.getColumnIndex(localDatabaseHelper.CARD_ID));
-            String start_date = cursor.getString(cursor.getColumnIndex(localDatabaseHelper.START_DATE));
-            String finish_date = cursor.getString(cursor.getColumnIndex(localDatabaseHelper.FINISH_DATE));
+            int card_id = cursor.getInt(cursor.getColumnIndex(LocalDatabaseHelper.CARD_ID));
+            String start_date = cursor.getString(cursor.getColumnIndex(LocalDatabaseHelper.START_DATE));
+            String finish_date = cursor.getString(cursor.getColumnIndex(LocalDatabaseHelper.FINISH_DATE));
             buffer.append(card_id + "   " + start_date + "   " + finish_date + " \n");
         }
         return buffer.toString();
@@ -49,12 +49,12 @@ public class LocalDatabaseAdapter {
         ArrayList<FishingCard> cardList = new ArrayList<>();
 
         sqLiteDatabase = localDatabaseHelper.getReadableDatabase();
-        String[] field = {localDatabaseHelper.CARD_ID,localDatabaseHelper.START_DATE,localDatabaseHelper.FINISH_DATE};
-        Cursor c = sqLiteDatabase.query(localDatabaseHelper.TABLE_NAME, field, null, null, null, null, null);
+        String[] field = {LocalDatabaseHelper.CARD_ID, LocalDatabaseHelper.START_DATE, LocalDatabaseHelper.FINISH_DATE};
+        Cursor c = sqLiteDatabase.query(LocalDatabaseHelper.TABLE_NAME, field, null, null, null, null, null);
 
-        int id = c.getColumnIndex(localDatabaseHelper.CARD_ID);
-        int startDate = c.getColumnIndex(localDatabaseHelper.START_DATE);
-        int finishDate = c.getColumnIndex(localDatabaseHelper.FINISH_DATE);
+        int id = c.getColumnIndex(LocalDatabaseHelper.CARD_ID);
+        int startDate = c.getColumnIndex(LocalDatabaseHelper.START_DATE);
+        int finishDate = c.getColumnIndex(LocalDatabaseHelper.FINISH_DATE);
 
         for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()){
             String cardId = c.getString(id);
@@ -73,23 +73,23 @@ public class LocalDatabaseAdapter {
         SQLiteDatabase db = localDatabaseHelper.getWritableDatabase();
         String[] whereArgs = {uname};
 
-        int count = db.delete(localDatabaseHelper.TABLE_NAME, localDatabaseHelper.START_DATE + " = ?", whereArgs);
+        int count = db.delete(LocalDatabaseHelper.TABLE_NAME, LocalDatabaseHelper.START_DATE + " = ?", whereArgs);
         return count;
     }
 
 
     public void deleteAllRows() {
         SQLiteDatabase db = localDatabaseHelper.getWritableDatabase();
-        db.execSQL("delete from "+ localDatabaseHelper.TABLE_NAME);
+        db.execSQL("delete from "+ LocalDatabaseHelper.TABLE_NAME);
 
     }
 
     public int updateDate(String old_start_date, String new_start_date) {
         SQLiteDatabase db = localDatabaseHelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(localDatabaseHelper.START_DATE, new_start_date);
+        contentValues.put(LocalDatabaseHelper.START_DATE, new_start_date);
         String[] whereArgs = {old_start_date};
-        int count = db.update(localDatabaseHelper.TABLE_NAME, contentValues, localDatabaseHelper.START_DATE + " = ?", whereArgs);
+        int count = db.update(LocalDatabaseHelper.TABLE_NAME, contentValues, LocalDatabaseHelper.START_DATE + " = ?", whereArgs);
         return count;
     }
 
@@ -109,7 +109,7 @@ public class LocalDatabaseAdapter {
                 " (" + CARD_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + START_DATE + " VARCHAR(255) ," + FINISH_DATE + " VARCHAR(225));";
 
         private static final String DROP_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME;
-        private Context context;
+        private final Context context;
 
         public LocalDatabaseHelper(Context context) {
             super(context, DATABASE_NAME, null, DATABASE_Version);

@@ -29,6 +29,7 @@ public class HomeActivity extends AppCompatActivity{
     private Button button;
     private ProgressBar progressBar;
     private FirebaseAuth mAuth;
+    private Button buyButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,5 +45,22 @@ public class HomeActivity extends AppCompatActivity{
         NavigationUI.setupWithNavController(navView, navController);
 
 
-        mAuth = FirebaseAuth.getInstance();  }}
+        mAuth = FirebaseAuth.getInstance();
+
+    buyButton = findViewById(R.id.buyButton);
+    buyButton.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            buy();
+        }
+    });
+    }
+
+    public void buy(){
+        Intent intent = new Intent(this,buy.class);
+        startActivity(intent);
+    }
+
+}
+
 

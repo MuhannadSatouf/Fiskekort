@@ -22,7 +22,7 @@ public class LocalDatabaseHelper extends SQLiteOpenHelper {
             " ("+CARD_ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+ START_DATE +" VARCHAR(255) ,"+ FINISH_DATE +" VARCHAR(225));";
 
     private static final String DROP_TABLE ="DROP TABLE IF EXISTS "+TABLE_NAME;
-    private Context context;
+    private final Context context;
 
     public LocalDatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_Version);
