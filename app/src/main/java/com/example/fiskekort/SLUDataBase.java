@@ -29,15 +29,14 @@ public class SLUDataBase extends AppCompatActivity {
 
 
 
-
-        Button Button2 = (Button) findViewById(R.id.ShowDataSlubt);
+        Button Button2 = (Button) findViewById(R.id.ShowSLUmap);
 
         Button2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_VIEW);
                 intent.addCategory(Intent.CATEGORY_BROWSABLE);
-                intent.setData(Uri.parse("https://www.slu.se/sjoprovfiskedatabasen"));
+                intent.setData(Uri.parse("http://dvfisk.slu.se"));
                 startActivity(intent);
             }
         });
