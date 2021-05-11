@@ -13,7 +13,6 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.fiskekort.LocalDB.LocalDatabaseAdapter;
-import com.example.fiskekort.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -74,7 +73,7 @@ public class Fishing_card_activity extends AppCompatActivity implements AdapterV
     }
 
     public void buy(){
-        Intent intent = new Intent(this,buy.class);
+        Intent intent = new Intent(this, Buy.class);
         startActivity(intent);
     }
 

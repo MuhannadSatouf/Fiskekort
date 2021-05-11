@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class buy extends AppCompatActivity {
+public class Buy extends AppCompatActivity {
 
     private Button oneDayButton;
     private Button oneMonthButton;
@@ -50,22 +50,22 @@ public class buy extends AppCompatActivity {
     }
 
     public void oneday(){
-        Intent intent = new Intent(this,purchase.class);
+        Intent intent = new Intent(this, Purchase.class);
         startActivity(intent);
     }
 
     public void oneMonth(){
-        Intent intent = new Intent(this,purchase.class);
+        Intent intent = new Intent(this, Purchase.class);
         startActivity(intent);
     }
 
     public void sixMonth(){
-        Intent intent = new Intent(this,purchase.class);
+        Intent intent = new Intent(this, Purchase.class);
         startActivity(intent);
     }
 
     public void oneYear(){
-        Intent intent = new Intent(this,purchase.class);
+        Intent intent = new Intent(this, Purchase.class);
         startActivity(intent);
     }
 
