@@ -69,7 +69,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             case R.id.textNoAccount:
                 registration();
                 break;
-
         }
 
 //login method
