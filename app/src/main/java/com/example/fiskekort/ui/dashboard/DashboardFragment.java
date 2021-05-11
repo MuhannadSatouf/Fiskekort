@@ -45,7 +45,7 @@ public class DashboardFragment extends Fragment implements AdapterView.OnItemSel
                 new ViewModelProvider(this).get(DashboardViewModel.class);
         View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
-        qrButton = root.findViewById(R.id.qr_button);
+
         qrView = root.findViewById(R.id.qr_code_iv);
         ticketSpinner = root.findViewById(R.id.ticketSpinner);
         localDatabaseAdapter = new LocalDatabaseAdapter(getContext());
@@ -54,36 +54,6 @@ public class DashboardFragment extends Fragment implements AdapterView.OnItemSel
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         ticketSpinner.setAdapter(adapter);
         ticketSpinner.setOnItemSelectedListener(this);
-
-        qrButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //String data = localDatabaseAdapter.getData();
-                cardList = localDatabaseAdapter.getListOfData();
-
-                // FishingCard fishingCard = new FishingCard()
-
-
-                // MultiFormatWriter writer = new MultiFormatWriter();
-                // try {
-                //    BitMatrix matrix = writer.encode(data, BarcodeFormat.QR_CODE, 350, 350);
-
-                //    BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
-
-                //    Bitmap bitmap = barcodeEncoder.createBitmap(matrix);
-
-
-                //     qrView.setImageBitmap(bitmap);
-
-
-                // } catch (WriterException e) {
-                //    e.printStackTrace();
-                // }
-
-
-            }
-
-        });
 
 
         dashboardViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
@@ -118,28 +88,26 @@ public class DashboardFragment extends Fragment implements AdapterView.OnItemSel
         //ArrayList<Bitmap> bitmapList = new ArrayList<>();
         MultiFormatWriter writer = new MultiFormatWriter();
         StringBuilder textToQr = new StringBuilder();
-         FishingCard fishingCard = cardList.get(position);
+        FishingCard fishingCard = cardList.get(position);
 
-            String cNum = fishingCard.getCardNumber();
-            String startDate = fishingCard.getStartDate();
-            String finishDate = fishingCard.getFinishDate();
-            textToQr.append("\n" + cNum + "\n" + startDate + "\n" + finishDate + "\n");
-            String printQr = textToQr.toString();
 
-            try {
-                BitMatrix matrix = writer.encode(printQr, BarcodeFormat.QR_CODE, 350, 350);
-                BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
-                Bitmap bitmap = barcodeEncoder.createBitmap(matrix);
-                qrView.setImageBitmap(bitmap);
+        String cNum = fishingCard.getCardNumber();
+        String startDate = fishingCard.getStartDate();
+        String finishDate = fishingCard.getFinishDate();
+        textToQr.append("\n" + cNum + "\n" + startDate + "\n" + finishDate + "\n");
+        String printQr = textToQr.toString();
 
-            } catch (WriterException e) {
-                e.printStackTrace();
-            }
+        try {
+            BitMatrix matrix = writer.encode(printQr, BarcodeFormat.QR_CODE, 350, 350);
+            BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
+            Bitmap bitmap = barcodeEncoder.createBitmap(matrix);
+            qrView.setImageBitmap(bitmap);
 
+        } catch (WriterException e) {
+            e.printStackTrace();
         }
 
-
-
+    }
 
 
     @Override
@@ -148,8 +116,7 @@ public class DashboardFragment extends Fragment implements AdapterView.OnItemSel
     }
 
 
-
-    }
+}
 
 
 
