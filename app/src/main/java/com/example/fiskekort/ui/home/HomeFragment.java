@@ -1,6 +1,9 @@
 package com.example.fiskekort.ui.home;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.LayoutInflater;
@@ -14,6 +17,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -22,12 +26,14 @@ import com.example.fiskekort.Fishing_card_activity;
 import com.example.fiskekort.R;
 import com.example.fiskekort.Register;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.SignInMethodQueryResult;
 
 import java.util.Objects;
 
@@ -40,6 +46,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private ProgressBar progressBar;
     private FirebaseAuth mAuth;
     private FirebaseUser firebaseUser;
+    private EditText forgetPasswordEmail;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -53,6 +60,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         registration = root.findViewById(R.id.textNoAccount);
         registration.setOnClickListener(this);
         progressBar = root.findViewById(R.id.progressBarLogin);
+        TextView forgetPassword = root.findViewById(R.id.forgetPassword);
+        forgetPassword.setOnClickListener(this);
         mAuth = FirebaseAuth.getInstance();
         return root;
     }
@@ -68,6 +77,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
             case R.id.textNoAccount:
                 registration();
+                break;
+
+            case R.id.forgetPassword:
+                forgetPasswordDialog();
                 break;
         }
 
@@ -89,17 +102,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             errorMessage(editTextPassword, "min password length should be 8 characters");
         } else {
 
-            //progressBar.setVisibility(View.VISIBLE);
+            progressBar.setVisibility(View.VISIBLE);
 
             mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
 
-                   /*
-                    Toast.makeText(MainActivity.this, "you have successful login!", Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(MainActivity.this, Fishing_card_activity.class));
-                    progressBar.setVisibility(View.INVISIBLE);
-                    finish();
-                    */
                     firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                     if (firebaseUser != null) {
                         if (firebaseUser.isEmailVerified()) {
@@ -147,5 +154,61 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     public void createToast(String text) {
         Toast.makeText(getContext(), text, Toast.LENGTH_LONG).show();
+    }
+
+
+    // Reset Password Methods.
+    public void forgetPasswordDialog() {
+
+        LayoutInflater layoutInflater = LayoutInflater.from(getContext());
+        View view = layoutInflater.inflate(R.layout.forget_password, null);
+
+        final AlertDialog alertD = new AlertDialog.Builder(getContext()).create();
+
+        alertD.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        forgetPasswordEmail = view.findViewById(R.id.email_forget_password);
+        Button resetPasswordButton = view.findViewById(R.id.resetPasswordButton);
+        mAuth = FirebaseAuth.getInstance();
+
+        resetPasswordButton.setOnClickListener(v -> resetPassword());
+        alertD.setView(view);
+        alertD.show();
+    }
+
+    public void resetPassword() {
+        String email = forgetPasswordEmail.getText().toString().trim();
+
+        if (email.isEmpty()) {
+            errorMessage(forgetPasswordEmail, "Email is required");
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            errorMessage(forgetPasswordEmail, "Please provide valid email");
+        } else {
+            checkEmailExistsOrNot(email);
+           //mAuth.sendPasswordResetEmail(email).addOnCompleteListener(task -> createToast("Check your email"));
+        }
+    }
+
+    void checkEmailExistsOrNot(String email) {
+
+        mAuth.fetchSignInMethodsForEmail(email).addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
+            @Override
+            public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
+                if (task.getResult().getSignInMethods().size() == 0) {
+                    // email not existed
+                    createToast("This email does not exist in the database, please register yourself.");
+                } else {
+                    // email existed
+                    mAuth.sendPasswordResetEmail(email);
+                    createToast("Please Check your E-mail.");
+                }
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                e.printStackTrace();
+            }
+        });
     }
 }

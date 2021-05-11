@@ -24,5 +24,7 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Licences</string>
     <string name="title_notifications">Map</string>
+    <string name="forget_password">Forget Password</string>
+    <string name="no_accoount_press_here">No accoount? Press here!</string>
 
 </resources>

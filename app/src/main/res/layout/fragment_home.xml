@@ -48,20 +48,36 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
-        android:layout_marginLeft="100dp"
         android:layout_marginTop="88dp"
         android:layout_marginEnd="101dp"
-        android:layout_marginRight="101dp"
         android:layout_marginBottom="326dp"
         android:ems="10"
-        android:hint="No accoount? Press here!"
+        android:hint="@string/no_accoount_press_here"
         android:inputType="textPersonName"
-        android:textColor="#F30404"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="@color/primaryTextColor"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginPassword"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="TextViewEdits" />
+
+    <TextView
+        android:id="@+id/forgetPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:clickable="true"
+
+        android:focusable="true"
+        android:gravity="center_horizontal"
+        android:text="@string/forget_password"
+        android:textColor="@color/primaryTextColor"
+        app:layout_constraintBottom_toTopOf="@+id/progressBarLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textNoAccount"
+        app:layout_constraintVertical_bias="0.609" />
 
     <ProgressBar
         android:id="@+id/progressBarLogin"
@@ -69,16 +85,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="178dp"
-        android:layout_marginLeft="178dp"
-        android:layout_marginTop="63dp"
         android:layout_marginEnd="185dp"
-        android:layout_marginRight="185dp"
-        android:layout_marginBottom="215dp"
+        android:layout_marginBottom="144dp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textNoAccount" />
+
+        />
 
     <Button
         android:id="@+id/loginButton"
@@ -95,4 +110,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginPassword" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
