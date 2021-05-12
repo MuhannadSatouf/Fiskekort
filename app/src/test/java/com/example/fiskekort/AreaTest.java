@@ -2,38 +2,36 @@ package com.example.fiskekort;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.*;
 
-public class LocationTest {
+public class AreaTest {
     Municipality municipality = new Municipality("Kristianstad kommun");
     Lake[] lakes = {new Lake("Titicaca", 46778754.2, 358235677.65), new Lake("Ringsjon", 28567432444.6, 3768009.1)};
-    private Location lo = new Location();
+    private Area area1 = new Area();
 
     @Test
     public void setMun() {
-        lo.setMun(municipality);
-        assertNotNull(lo.getMun());
+        area1.setMun(municipality);
+        assertNotNull(area1.getMun());
     }
 
     @Test
     public void setLakes() {
-        lo.setLakes(lakes);
-        assertNotNull(lo.getLakes());
+        area1.setLakes(lakes);
+        assertNotNull(area1.getLakes());
     }
 
     @Test
     public void getMun() {
-        lo.setMun(municipality);
-        assertEquals(municipality, lo.getMun());
+        area1.setMun(municipality);
+        assertEquals(municipality, area1.getMun());
     }
-
-
 
     @Test
     public void getLakes() {
-        lo.setLakes(lakes);
-        assertArrayEquals(lakes, lo.getLakes());
+        area1.setLakes(lakes);
+        assertArrayEquals(lakes, area1.getLakes());
     }
-
-
 }
