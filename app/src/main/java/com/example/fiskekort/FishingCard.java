@@ -6,7 +6,6 @@ public class FishingCard {
     private String finishDate;
     private User owner;
     private LocationType locationType;
-    private Duration duration;
 
     public FishingCard(User owner, String cardNumber, String startDate, String finishDate) {
         this.cardNumber = cardNumber;
@@ -15,7 +14,7 @@ public class FishingCard {
         this.owner = owner;   // is owner needed at all? it will be on his phone...
     }
 
-    public FishingCard(String cardNumber, String startDate, String finishDate) {   //why dont we use Duration and calculate the finish date without placing it into constructor? Also, please, add areas where user is allowed to do fishing
+    public FishingCard(String cardNumber, String startDate, String finishDate) {   //please, add areas where user is allowed to do fishing
                 this.cardNumber=cardNumber;
                 this.startDate=startDate;
                 this.finishDate=finishDate;
