@@ -2,7 +2,7 @@ package com.example.fiskekort;
 
 import java.io.Serializable;
 
-public class Area implements Serializable {
+public class Area {
     private Municipality mun;
     private Lake[] lakes;
 

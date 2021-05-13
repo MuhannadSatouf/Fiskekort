@@ -20,16 +20,6 @@ public class Location {
 
         return areas;
     }
-/*
-    public Lake[] getLakesByArea(Municipality municipality){
-        for (int i = 0; i < getAreas().size(); i++) {
-            if (getAreas().get(i).getMun().equals(municipality)){
-                return getAreas().get(i).getLakes();
-            }
-        }
-
-        return null;
-    }*/
 
     public Lake[] getLakesByArea(String municipalityName) {
         for (int i = 0; i < getAreas().size(); i++) {
