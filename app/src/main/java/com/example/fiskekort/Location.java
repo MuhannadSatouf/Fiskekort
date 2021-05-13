@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Location {
     private static ArrayList<Area> areas = new ArrayList<>();
+    private ArrayList<Lake> lakes = new ArrayList<>();
 
 
     public ArrayList<Area> getAreas() {
@@ -25,15 +26,25 @@ public class Location {
 
         Area krist = new Area(mun1, l1, l2, l3, l4, l5, l6);
         areas.add(krist);
+
+
+        Municipality mun2 = new Municipality("Osby kommun");
+        Lake l101 = new Lake("Osbysjön", 56.3500000, 13.9833333);
+        lakes.add(l101);
+
+
+        Area osby = new Area(mun2, l101);
+        areas.add(osby);
+
         return areas;
     }
 
-    public Lake[] getAreasLakes(Municipality municipality){
+    public Lake[] getLakesByArea(Municipality municipality){
         int index = areas.indexOf(municipality);
         return areas.get(index).getLakes();
     }
 
-    public Lake[] getAreasLakes(String municipalityName){
+    public Lake[] getLakesByArea(String municipalityName){
         for (int i = 0; i < areas.size(); i++) {
             if (areas.get(i).getMun().getName().equals(municipalityName)){
                 return areas.get(i).getLakes();
@@ -43,14 +54,14 @@ public class Location {
     }
 
     public ArrayList<Lake> getAllLakes(){
-        ArrayList<Lake> lakes = new ArrayList<>();
+      /*  ArrayList<Lake> lakes = new ArrayList<>();
         for (int i = 0; i < areas.size(); i++) {
             Lake[] tmp;
             for (int j = 0; j < areas.get(i).getLakes().length; j++) {
                 tmp = areas.get(i).getLakes();
                 lakes.add(tmp[j]);
             }
-        }
+        }*/
         return lakes;
     }
 }
