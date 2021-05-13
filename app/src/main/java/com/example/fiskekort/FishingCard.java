@@ -1,22 +1,21 @@
 package com.example.fiskekort;
 
-
-import java.util.Date;
-
 public class FishingCard {
     private String cardNumber;
     private String startDate;
     private String finishDate;
     private User owner;
+    private LocationType locationType;
+    private Duration duration;
 
     public FishingCard(User owner, String cardNumber, String startDate, String finishDate) {
         this.cardNumber = cardNumber;
         this.startDate = startDate;
         this.finishDate = finishDate;
-        this.owner = owner;
+        this.owner = owner;   // is owner needed at all? it will be on his phone...
     }
 
-    public FishingCard(String cardNumber, String startDate, String finishDate) {
+    public FishingCard(String cardNumber, String startDate, String finishDate) {   //why dont we use Duration and calculate the finish date without placing it into constructor? Also, please, add areas where user is allowed to do fishing
                 this.cardNumber=cardNumber;
                 this.startDate=startDate;
                 this.finishDate=finishDate;
