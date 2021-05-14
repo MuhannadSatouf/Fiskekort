@@ -6,15 +6,21 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.icu.util.Calendar;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Arrays;
 import java.util.Date;
+
+import static android.view.View.INVISIBLE;
+import static android.view.View.VISIBLE;
 
 public class Buy extends AppCompatActivity {
 
@@ -23,7 +29,6 @@ public class Buy extends AppCompatActivity {
     private Button sixMonthButton;
     private Button oneYearButton;
     private Duration duration;
-    private RadioGroup radioGroup;
     private RadioButton rbMunicipality;
     private RadioButton rbLake;
     private Button btnProceed;
@@ -84,7 +89,8 @@ public class Buy extends AppCompatActivity {
             }
         });
 
-        radioGroup=(RadioGroup)findViewById(R.id.radio_group);
+
+
         btnProceed=(Button)findViewById(R.id.b_Proceed);
         date = (EditText) findViewById(R.id.date);
 
@@ -111,47 +117,91 @@ public class Buy extends AppCompatActivity {
             }
         });
 
+        final RadioGroup radioGroup=(RadioGroup)findViewById(R.id.radio_group);
         final RadioGroup rgMun = (RadioGroup) findViewById(R.id.rg_municipality);
+        final RadioGroup rgLake = (RadioGroup) findViewById(R.id.rg_lake);
+        final TextView hiddenText_mun = (TextView) findViewById(R.id.invisible_mun);
+
         String[] municipalities = location.getAllMunicipalityNames();
         createRadioButton(municipalities, rgMun);
-      /*  for (int i = 0; i < municipalities.length; i++) {
-            RadioButton radioButton = new RadioButton(this);
-            radioButton.setText(municipalities[i]);
-            radioButton.setId(i);
-            rgMun.addView(radioButton);
-        }*/
 
-        //set listener to radio button group
-        rgMun.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                int checkedRadioButtonId = rgMun.getCheckedRadioButtonId();
-                RadioButton radioBtn = (RadioButton) findViewById(checkedRadioButtonId);
-                Toast.makeText(Buy.this, radioBtn.getText(), Toast.LENGTH_SHORT).show();
+                RadioButton radioBtn = (RadioButton) findViewById(radioGroup.getCheckedRadioButtonId());
+
+                if (radioBtn.getText().equals("Municipality")){
+                    rgMun.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                        @Override
+                        public void onCheckedChanged(RadioGroup group, int checkedId) {
+                            rgLake.setVisibility(View.GONE);
+                            hiddenText_mun.setText("");
+
+                            RadioButton selected0 = (RadioButton) findViewById(rgMun.getCheckedRadioButtonId());
+                            hiddenText_mun.setText(selected0.getText());
+                        }
+                    });
+                } else{
+                    rgLake.setVisibility(VISIBLE);
+                    rgMun.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                        @Override
+                        public void onCheckedChanged(RadioGroup group, int checkedId) {
+                            hiddenText_mun.setText("");
+                            RadioButton selected = (RadioButton) findViewById(rgMun.getCheckedRadioButtonId());
+                            hiddenText_mun.setText(selected.getText());
+
+                            String[] lakes = location.getLakesNamesByArea(String.valueOf(hiddenText_mun.getText()));
+                            createRadioButton(lakes, rgLake);
+
+                            //set listener to radio button group
+                            rgLake.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                                @Override
+                                public void onCheckedChanged(RadioGroup group, int checkedId) {
+                                    RadioButton radioBtn0 = (RadioButton) findViewById(rgLake.getCheckedRadioButtonId());
+                                }
+                            });
+                        }
+                    });
+                }
+
             }
         });
 
-        final RadioGroup rgLake = (RadioGroup) findViewById(R.id.rg_lake);
-        String[] lakes = location.getLakesNamesByArea("Osby kommun");
-        createRadioButton(municipalities, rgLake);
 
-        //set listener to radio button group
-        rgLake.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                int checkedRadioButtonId = rgLake.getCheckedRadioButtonId();
-                RadioButton radioBtn = (RadioButton) findViewById(checkedRadioButtonId);
-                Toast.makeText(Buy.this, radioBtn.getText(), Toast.LENGTH_SHORT).show();
-            }
-        });
+
 
 
         btnProceed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int selectedId=radioGroup.getCheckedRadioButtonId();
-                rbMunicipality=(RadioButton)findViewById(selectedId);
-                Toast.makeText(Buy.this,rbMunicipality.getText(),Toast.LENGTH_SHORT).show();
+
+                RadioButton radioBtnArea = (RadioButton) findViewById(radioGroup.getCheckedRadioButtonId());
+                RadioButton radioBtnMun = (RadioButton) findViewById(rgMun.getCheckedRadioButtonId());
+                RadioButton radioBtnLake = (RadioButton) findViewById(rgLake.getCheckedRadioButtonId());
+                String[] choises = new String[3];  // 0- area, 1 - mun, 2 - lake
+
+                System.out.println((radioBtnArea == null? "null": "not null"));
+
+                if (radioBtnArea == null){
+                    choises[0] = "Municipality";
+                    choises[1] = municipalities[0];
+                    choises[2] = " ";
+                    radioBtnLake = null;
+                } else {
+                    choises[0] = String.valueOf(radioBtnArea.getText());
+                    if (radioBtnMun == null) {
+                        choises[1] = municipalities[0];
+                    } else{
+                        choises[1] = String.valueOf(radioBtnMun.getText());
+                    }
+                    if (radioBtnLake == null){
+                        String[] l1 = location.getLakesNamesByArea(choises[1]);
+                        choises[2] = l1[0];
+                    } else{
+                        choises[2] = String.valueOf(radioBtnLake.getText());
+                    }
+                }
+                Log.e("array: ", Arrays.toString(choises));
 
 
 
@@ -170,12 +220,15 @@ public class Buy extends AppCompatActivity {
     }*/
 
     private void createRadioButton(String[] strings, RadioGroup rgMun) {
+        rgMun.removeAllViewsInLayout();
         for (int i = 0; i < strings.length; i++) {
             RadioButton radioButton = new RadioButton(this);
+            if (i == 0){
+                radioButton.setSelected(true);
+            }
             radioButton.setText(strings[i]);
             radioButton.setId(i);
             rgMun.addView(radioButton);
         }
-      //  return rg;
     }
 }
