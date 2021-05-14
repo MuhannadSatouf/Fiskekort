@@ -111,14 +111,15 @@ public class Buy extends AppCompatActivity {
             }
         });
 
-        final RadioGroup rgMun = (RadioGroup) findViewById(R.id.rg_munitipality);
+        final RadioGroup rgMun = (RadioGroup) findViewById(R.id.rg_municipality);
         String[] municipalities = location.getAllMunicipalityNames();
-        for (int i = 0; i < municipalities.length; i++) {
+        createRadioButton(municipalities, rgMun);
+      /*  for (int i = 0; i < municipalities.length; i++) {
             RadioButton radioButton = new RadioButton(this);
             radioButton.setText(municipalities[i]);
             radioButton.setId(i);
             rgMun.addView(radioButton);
-        }
+        }*/
 
         //set listener to radio button group
         rgMun.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -129,6 +130,21 @@ public class Buy extends AppCompatActivity {
                 Toast.makeText(Buy.this, radioBtn.getText(), Toast.LENGTH_SHORT).show();
             }
         });
+
+        final RadioGroup rgLake = (RadioGroup) findViewById(R.id.rg_lake);
+        String[] lakes = location.getLakesNamesByArea("Osby kommun");
+        createRadioButton(municipalities, rgLake);
+
+        //set listener to radio button group
+        rgLake.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                int checkedRadioButtonId = rgLake.getCheckedRadioButtonId();
+                RadioButton radioBtn = (RadioButton) findViewById(checkedRadioButtonId);
+                Toast.makeText(Buy.this, radioBtn.getText(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
         btnProceed.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -153,17 +169,13 @@ public class Buy extends AppCompatActivity {
         startActivity(intent);
     }*/
 
-    private RadioGroup createRadioButton(String[] strings) {
-        final RadioButton[] rb = new RadioButton[5];
-        RadioGroup rg = new RadioGroup(this); //create the RadioGroup
-        rg.setOrientation(RadioGroup.HORIZONTAL);//or RadioGroup.VERTICAL
-        for(int i=0; i<strings.length; i++){
-            rb[i]  = new RadioButton(this);
-            rb[i].setText(" " + strings[i] + " ");
-            rb[i].setId(i + 100);
-            rg.addView(rb[i]);
+    private void createRadioButton(String[] strings, RadioGroup rgMun) {
+        for (int i = 0; i < strings.length; i++) {
+            RadioButton radioButton = new RadioButton(this);
+            radioButton.setText(strings[i]);
+            radioButton.setId(i);
+            rgMun.addView(radioButton);
         }
-     //   ll.addView(rg);//you add the whole RadioGroup to the layout
-        return rg;
+      //  return rg;
     }
 }

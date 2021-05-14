@@ -61,4 +61,14 @@ public class Location {
         }
         return names;
     }
+
+    public String[] getLakesNamesByArea(String municipalityName){
+        String[] names = new String[getLakesByArea(municipalityName).length];
+        int i = 0;
+        for (Lake l: getLakesByArea(municipalityName)) {
+            names[i] = l.getName();
+            i++;
+        }
+        return names;
+    }
 }
