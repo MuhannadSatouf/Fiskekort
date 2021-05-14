@@ -7,14 +7,24 @@
     tools:context=".Buy"
     >
 
+
+    <TextView
+        android:id="@+id/pure_text_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fab_margin"
+        android:paddingStart="@dimen/fab_margin"
+        android:paddingEnd="@dimen/fab_margin"
+        android:text="Select the duration of your license"
+        android:textSize="18sp" />
+
     <Button
         android:id="@+id/oneDayButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="1 d."
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-
+        android:layout_below="@id/pure_text_1"
+        android:layout_marginTop="@dimen/fab_margin"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"/>
 
@@ -22,9 +32,9 @@
         android:id="@+id/threeMonthButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/pure_text_1"
         android:text="3 m."
-        app:layout_constraintLeft_toRightOf="@id/oneDayButton"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/fab_margin"
         android:layout_toEndOf="@id/oneDayButton"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"/>
@@ -33,9 +43,9 @@
         android:id="@+id/sixMonthButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/pure_text_1"
         android:text="6 m."
-        app:layout_constraintLeft_toRightOf="@id/threeMonthButton"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/fab_margin"
         android:layout_toEndOf="@id/threeMonthButton"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"/>
@@ -44,11 +54,81 @@
         android:id="@+id/yearButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/pure_text_1"
         android:text="1 y."
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/sixMonthButton"
+        android:layout_marginTop="@dimen/fab_margin"
         android:layout_toEndOf="@id/sixMonthButton"
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"/>
+
+    <TextView
+        android:id="@+id/pure_text_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/fab_margin"
+        android:paddingEnd="@dimen/fab_margin"
+        android:layout_below="@id/simpleDatePicker"
+        android:layout_marginTop="@dimen/fab_margin"
+        android:text="How large area you want to fish on"
+        android:textSize="18sp" />
+
+    <RadioGroup
+        android:id="@+id/radio_group"
+        android:layout_width="390dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pure_text_3"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="@dimen/fab_margin"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/fab_margin"
+        android:paddingEnd="@dimen/fab_margin">
+
+        <RadioButton
+            android:id="@+id/rb_municipality"
+            android:layout_width="185dp"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Municipality"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/rb_lake"
+            android:layout_width="183dp"
+            android:layout_height="wrap_content"
+            android:text="Single Lake"
+            android:textSize="18sp" />
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/pure_text_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/fab_margin"
+        android:paddingEnd="@dimen/fab_margin"
+        android:layout_below="@id/oneDayButton"
+        android:layout_marginTop="@dimen/fab_margin"
+        android:text="Activation date for your license:"
+        android:textSize="18sp" />
+
+    <DatePicker
+        android:id="@+id/simpleDatePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pure_text_2"
+        android:background="#60"
+        android:datePickerMode="spinner" />
+
+    <Button
+        android:id="@+id/b_Proceed"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/simpleDatePicker"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:background="#150"
+        android:text="Proceed"
+        android:textColor="#fff"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 </RelativeLayout>
