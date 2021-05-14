@@ -10,9 +10,10 @@ import android.widget.Button;
 public class Buy extends AppCompatActivity {
 
     private Button oneDayButton;
-    private Button oneMonthButton;
+    private Button threeMonthButton;
     private Button sixMonthButton;
     private Button oneYearButton;
+    private Duration duration;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,14 +22,22 @@ public class Buy extends AppCompatActivity {
         oneDayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                oneday();
+                duration = Duration.ONE_DAY;
+                oneDayButton.setPressed(true);
+                threeMonthButton.setPressed(false);
+                sixMonthButton.setPressed(false);
+                oneYearButton.setPressed(false);
             }
         });
-        oneMonthButton = findViewById(R.id.oneMonthButton);
-        oneMonthButton.setOnClickListener(new View.OnClickListener() {
+        threeMonthButton = findViewById(R.id.threeMonthButton);
+        threeMonthButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                oneMonth();
+                duration = Duration.THREE_MONTHS;
+                oneDayButton.setPressed(false);
+                threeMonthButton.setPressed(true);
+                sixMonthButton.setPressed(false);
+                oneYearButton.setPressed(false);
             }
         });
 
@@ -36,7 +45,11 @@ public class Buy extends AppCompatActivity {
         sixMonthButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sixMonth();
+                duration = Duration.SIX_MONTHS;
+                oneDayButton.setPressed(false);
+                threeMonthButton.setPressed(false);
+                sixMonthButton.setPressed(true);
+                oneYearButton.setPressed(false);
             }
         });
 
@@ -44,30 +57,22 @@ public class Buy extends AppCompatActivity {
         oneYearButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                oneYear();
+                duration = Duration.YEAR;
+                oneDayButton.setPressed(false);
+                threeMonthButton.setPressed(false);
+                sixMonthButton.setPressed(false);
+                oneYearButton.setPressed(true);
             }
         });
     }
 
-    public void oneday(){
-        Intent intent = new Intent(this, Purchase.class);
-        startActivity(intent);
-    }
 
-    public void oneMonth(){
-        Intent intent = new Intent(this, Purchase.class);
-        startActivity(intent);
-    }
 
-    public void sixMonth(){
-        Intent intent = new Intent(this, Purchase.class);
-        startActivity(intent);
-    }
-
+/*
     public void oneYear(){
         Intent intent = new Intent(this, Purchase.class);
         startActivity(intent);
-    }
+    }*/
 
 
 }
