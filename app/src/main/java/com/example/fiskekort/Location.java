@@ -95,7 +95,7 @@ public class Location {
         lakeArrayList.add(Ivosjon);
         lakeArrayList.add(Rabelovssjon);
         lakeArrayList.add(Araslovsjon);
-        lakeArrayList.add(Immeln);
+    //    lakeArrayList.add(Immeln); duplicate
         lakeArrayList.add(Vesljungasjon);
         lakeArrayList.add(BronaSjo);
 
