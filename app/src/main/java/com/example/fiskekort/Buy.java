@@ -33,8 +33,9 @@ public class Buy extends AppCompatActivity {
     private RadioButton rbLake;
     private Button btnProceed;
     private Location location;
-    EditText date;
+    private EditText date;
     DatePickerDialog datePickerDialog;
+    String selectedDate = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,7 +95,7 @@ public class Buy extends AppCompatActivity {
         btnProceed=(Button)findViewById(R.id.b_Proceed);
         date = (EditText) findViewById(R.id.date);
 
-        String selectedDate = "";
+
         date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -152,14 +153,6 @@ public class Buy extends AppCompatActivity {
 
                             String[] lakes = location.getLakesNamesByArea(String.valueOf(hiddenText_mun.getText()));
                             createRadioButton(lakes, rgLake);
-
-                            //set listener to radio button group
-                            rgLake.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                                @Override
-                                public void onCheckedChanged(RadioGroup group, int checkedId) {
-                                    RadioButton radioBtn0 = (RadioButton) findViewById(rgLake.getCheckedRadioButtonId());
-                                }
-                            });
                         }
                     });
                 }
@@ -180,28 +173,27 @@ public class Buy extends AppCompatActivity {
                 RadioButton radioBtnLake = (RadioButton) findViewById(rgLake.getCheckedRadioButtonId());
                 String[] choises = new String[3];  // 0- area, 1 - mun, 2 - lake
 
-                System.out.println((radioBtnArea == null? "null": "not null"));
-
-                if (radioBtnArea == null){
-                    choises[0] = "Municipality";
-                    choises[1] = municipalities[0];
-                    choises[2] = " ";
-                    radioBtnLake = null;
-                } else {
-                    choises[0] = String.valueOf(radioBtnArea.getText());
-                    if (radioBtnMun == null) {
-                        choises[1] = municipalities[0];
-                    } else{
+                if (String.valueOf(date.getText()).isEmpty()){
+                    Toast.makeText(Buy.this, R.string.warning_missing_date, Toast.LENGTH_SHORT).show();
+                } else if (radioBtnMun == null){
+                  //  System.out.println(String.valueOf(date.getText()));
+                    Toast.makeText(Buy.this, R.string.warning_missing_municipality, Toast.LENGTH_SHORT).show();
+                } else if (radioBtnArea.getText().equals("Single Lake")){
+                    if (radioBtnLake == null)
+                    {
+                        Toast.makeText(Buy.this, R.string.warning_missing_lake, Toast.LENGTH_SHORT).show();
+                    } else {
+                        choises[0] = String.valueOf(radioBtnArea.getText());
                         choises[1] = String.valueOf(radioBtnMun.getText());
-                    }
-                    if (radioBtnLake == null){
-                        String[] l1 = location.getLakesNamesByArea(choises[1]);
-                        choises[2] = l1[0];
-                    } else{
                         choises[2] = String.valueOf(radioBtnLake.getText());
+                        Log.e("array: ", Arrays.toString(choises));
                     }
+                } else if (radioBtnArea.getText().equals("Municipality")){
+                    choises[0] = String.valueOf(radioBtnArea.getText());
+                    choises[1] = String.valueOf(radioBtnMun.getText());
+                    choises[2] = " ";
+                    Log.e("array: ", Arrays.toString(choises));
                 }
-                Log.e("array: ", Arrays.toString(choises));
 
 
 
