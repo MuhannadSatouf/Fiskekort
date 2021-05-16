@@ -8,15 +8,9 @@
     android:padding="16dp"
     tools:context=".ui.dashboard.DashboardFragment">
 
-    <Spinner
-        android:id="@+id/ticketSpinner"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/qrRecycleView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/qr_code_iv"
-        android:adjustViewBounds="true"/>
-
+        android:layout_height="match_parent"
+        android:layout_marginBottom="25dp"/>
 </LinearLayout>

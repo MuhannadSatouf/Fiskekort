@@ -39,15 +39,12 @@ public class Fishing_card_activity extends AppCompatActivity implements AdapterV
 
         //localDatabaseAdapter.deleteAllRows();
 
-        create_fishing_card_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        create_fishing_card_button.setOnClickListener(v -> {
 
-                if (spinnerSelected == false) {
-                    create_toast(Fishing_card_activity.this, "Please select a period first ");
-                } else {
-                    createCard();
-                }
+            if (spinnerSelected == false) {
+                create_toast(Fishing_card_activity.this, "Please select a period first ");
+            } else {
+                createCard();
             }
         });
 
@@ -72,11 +69,10 @@ public class Fishing_card_activity extends AppCompatActivity implements AdapterV
         });
     }
 
-    public void buy(){
+    public void buy() {
         Intent intent = new Intent(this, Buy.class);
         startActivity(intent);
     }
-
 
 
     public void initialize() {
@@ -97,12 +93,12 @@ public class Fishing_card_activity extends AppCompatActivity implements AdapterV
 
     //The card number will be unique.
     public void createCard() {
-
+/*
         if (spinner.getSelectedItemPosition() < 0) {
             create_toast(this, "Please select the period first");
         } else {
 
-            long id = localDatabaseAdapter.insertData(startDate(), finishDateForOneMonth());
+            long id = localDatabaseAdapter.insertDataAsObject(startDate(), finishDateForOneMonth());
             if (id <= 0) {
                 create_toast(this, "Insertion Unsuccessful");
             } else {
@@ -110,9 +106,11 @@ public class Fishing_card_activity extends AppCompatActivity implements AdapterV
             }
 
             //To show at there is a card for debugging
-            String data = localDatabaseAdapter.getData();
+            String data = localDatabaseAdapter.getDataAsObject();
             create_toast(this, data);
         }
+
+ */
     }
 
 
