@@ -15,7 +15,8 @@
     <string name="map_key" translatable="false">AIzaSyCeUNROGMMFVNZC7BYUxKb0jV6aZLywS2w </string>
 
     <string-array name="period">
-        <item>One month</item>
+        <item>One day</item>
+        <item>Three months</item>
         <item>Six months </item>
         <item>One year</item>
 
@@ -27,6 +28,7 @@
     <string name="forget_password">Forget Password</string>
     <string name="no_accoount_press_here">No accoount? Press here!</string>
 
+    <string name="warning_missing_duration">"Please, select an the duration of your license"</string>
     <string name="warning_missing_date">"Please, select an activation date"</string>
     <string name="warning_missing_municipality">"Please, select a municipality"</string>
     <string name="warning_missing_lake">"Please, select a lake"</string>
