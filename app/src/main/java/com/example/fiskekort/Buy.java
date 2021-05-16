@@ -2,6 +2,7 @@ package com.example.fiskekort;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.icu.util.Calendar;
@@ -9,6 +10,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -16,26 +19,30 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.Locale;
 
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 
 public class Buy extends AppCompatActivity {
 
-    private Button oneDayButton;
-    private Button threeMonthButton;
-    private Button sixMonthButton;
-    private Button oneYearButton;
-    private Duration duration;
-    private RadioButton rbMunicipality;
-    private RadioButton rbLake;
+    private CheckBox oneDayButton;
+    private CheckBox threeMonthButton;
+    private CheckBox sixMonthButton;
+    private CheckBox oneYearButton;
+    public static Duration duration;
     private Button btnProceed;
     private Location location;
     private EditText date;
     DatePickerDialog datePickerDialog;
-    String selectedDate = "";
+  //  String selectedDate = "";
+    RadioButton radioBtnArea;
+    RadioButton radioBtnMun;
+    RadioButton radioBtnLake;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,55 +51,55 @@ public class Buy extends AppCompatActivity {
         setContentView(R.layout.activity_buy);
 
         oneDayButton = findViewById(R.id.oneDayButton);
-        oneDayButton.setOnClickListener(new View.OnClickListener() {
+        oneDayButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                duration = Duration.ONE_DAY;
-                oneDayButton.setPressed(true);
-                threeMonthButton.setPressed(false);
-                sixMonthButton.setPressed(false);
-                oneYearButton.setPressed(false);
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    duration = Duration.ONE_DAY;
+                    threeMonthButton.setChecked(false);
+                    sixMonthButton.setChecked(false);
+                    oneYearButton.setChecked(false);
+                }
             }
         });
         threeMonthButton = findViewById(R.id.threeMonthButton);
-        threeMonthButton.setOnClickListener(new View.OnClickListener() {
+        threeMonthButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                duration = Duration.THREE_MONTHS;
-                oneDayButton.setPressed(false);
-                threeMonthButton.setPressed(true);
-                sixMonthButton.setPressed(false);
-                oneYearButton.setPressed(false);
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    duration = Duration.THREE_MONTHS;
+                    oneDayButton.setChecked(false);
+                    sixMonthButton.setChecked(false);
+                    oneYearButton.setChecked(false);
+                }
             }
         });
-
         sixMonthButton = findViewById(R.id.sixMonthButton);
-        sixMonthButton.setOnClickListener(new View.OnClickListener() {
+        sixMonthButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                duration = Duration.SIX_MONTHS;
-                oneDayButton.setPressed(false);
-                threeMonthButton.setPressed(false);
-                sixMonthButton.setPressed(true);
-                oneYearButton.setPressed(false);
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    duration = Duration.SIX_MONTHS;
+                    oneDayButton.setChecked(false);
+                    threeMonthButton.setChecked(false);
+                    oneYearButton.setChecked(false);
+                }
             }
         });
-
         oneYearButton = findViewById(R.id.yearButton);
-        oneYearButton.setOnClickListener(new View.OnClickListener() {
+        oneYearButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                duration = Duration.YEAR;
-                oneDayButton.setPressed(false);
-                threeMonthButton.setPressed(false);
-                sixMonthButton.setPressed(false);
-                oneYearButton.setPressed(true);
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    duration = Duration.YEAR;
+                    oneDayButton.setChecked(false);
+                    threeMonthButton.setChecked(false);
+                    sixMonthButton.setChecked(false);
+                }
             }
         });
 
-
-
-        btnProceed=(Button)findViewById(R.id.b_Proceed);
+        btnProceed = (Button) findViewById(R.id.b_Proceed);
         date = (EditText) findViewById(R.id.date);
 
 
@@ -108,17 +115,19 @@ public class Buy extends AppCompatActivity {
                 datePickerDialog = new DatePickerDialog(Buy.this,
                         (view, year, monthOfYear, dayOfMonth) -> {
                             // set day of month , month and year value in the edit text
-                            date.setText(dayOfMonth + "/"
-                                    + (monthOfYear) + "/" + year);
+                         //   date.setText(dayOfMonth + "-"
+                         //           + (monthOfYear+1) + "-" + year);
+                            date.setText(year + "-" +  (monthOfYear+1) + "-" + dayOfMonth);
                             //here create a variable
-                            selectedDate.concat(String.valueOf(year)).concat("-").concat(String.valueOf( monthOfYear)).concat("-").concat(String.valueOf( dayOfMonth));
+                      //      selectedDate.concat(String.valueOf(year)).concat("-").concat(String.valueOf(monthOfYear+1)).concat("-").concat(String.valueOf(dayOfMonth));  //yyyy/mm/dd
 
                         }, mYear, mMonth, mDay);
                 datePickerDialog.show();
+                System.out.println(date.getText());
             }
         });
 
-        final RadioGroup radioGroup=(RadioGroup)findViewById(R.id.radio_group);
+        final RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radio_group);
         final RadioGroup rgMun = (RadioGroup) findViewById(R.id.rg_municipality);
         final RadioGroup rgLake = (RadioGroup) findViewById(R.id.rg_lake);
         final TextView hiddenText_mun = (TextView) findViewById(R.id.invisible_mun);
@@ -131,7 +140,7 @@ public class Buy extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 RadioButton radioBtn = (RadioButton) findViewById(radioGroup.getCheckedRadioButtonId());
 
-                if (radioBtn.getText().equals("Municipality")){
+                if (radioBtn.getText().equals("Municipality")) {
                     rgMun.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                         @Override
                         public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -142,7 +151,7 @@ public class Buy extends AppCompatActivity {
                             hiddenText_mun.setText(selected0.getText());
                         }
                     });
-                } else{
+                } else {
                     rgLake.setVisibility(VISIBLE);
                     rgMun.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                         @Override
@@ -161,61 +170,123 @@ public class Buy extends AppCompatActivity {
         });
 
 
-
-
-
         btnProceed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                RadioButton radioBtnArea = (RadioButton) findViewById(radioGroup.getCheckedRadioButtonId());
-                RadioButton radioBtnMun = (RadioButton) findViewById(rgMun.getCheckedRadioButtonId());
-                RadioButton radioBtnLake = (RadioButton) findViewById(rgLake.getCheckedRadioButtonId());
-                String[] choises = new String[3];  // 0- area, 1 - mun, 2 - lake
+                radioBtnArea = (RadioButton) findViewById(radioGroup.getCheckedRadioButtonId());
+                radioBtnMun = (RadioButton) findViewById(rgMun.getCheckedRadioButtonId());
+                radioBtnLake = (RadioButton) findViewById(rgLake.getCheckedRadioButtonId());
+                String[] choices = new String[3];  // 0- area, 1 - mun, 2 - lake
 
-                if (String.valueOf(date.getText()).isEmpty()){
+                if (duration == null) {
+                    Toast.makeText(Buy.this, R.string.warning_missing_duration, Toast.LENGTH_SHORT).show();
+                } else if (String.valueOf(date.getText()).isEmpty()) {
                     Toast.makeText(Buy.this, R.string.warning_missing_date, Toast.LENGTH_SHORT).show();
-                } else if (radioBtnMun == null){
-                  //  System.out.println(String.valueOf(date.getText()));
+                } else if (radioBtnMun == null) {
                     Toast.makeText(Buy.this, R.string.warning_missing_municipality, Toast.LENGTH_SHORT).show();
-                } else if (radioBtnArea.getText().equals("Single Lake")){
-                    if (radioBtnLake == null)
-                    {
+                } else if (radioBtnArea.getText().equals("Single Lake")) {
+                    if (radioBtnLake == null) {
                         Toast.makeText(Buy.this, R.string.warning_missing_lake, Toast.LENGTH_SHORT).show();
                     } else {
-                        choises[0] = String.valueOf(radioBtnArea.getText());
-                        choises[1] = String.valueOf(radioBtnMun.getText());
-                        choises[2] = String.valueOf(radioBtnLake.getText());
-                        Log.e("array: ", Arrays.toString(choises));
+                        choices[0] = String.valueOf(radioBtnArea.getText());
+                        choices[1] = String.valueOf(radioBtnMun.getText());
+                        choices[2] = String.valueOf(radioBtnLake.getText());
+                        Log.e("array: ", Arrays.toString(choices));
+                        createLicense(choices, duration, String.valueOf(date.getText()));
                     }
-                } else if (radioBtnArea.getText().equals("Municipality")){
-                    choises[0] = String.valueOf(radioBtnArea.getText());
-                    choises[1] = String.valueOf(radioBtnMun.getText());
-                    choises[2] = " ";
-                    Log.e("array: ", Arrays.toString(choises));
+                } else if (radioBtnArea.getText().equals("Municipality")) {
+                    choices[0] = String.valueOf(radioBtnArea.getText());
+                    choices[1] = String.valueOf(radioBtnMun.getText());
+                    choices[2] = " ";
+                    Log.e("array: ", Arrays.toString(choices));
+                    createLicense(choices, duration, String.valueOf(date.getText()));
                 }
 
-
-
+            cleanUpAndReturn();
             }
         });
 
 
     }
 
+    private void createLicense(String[] choices, Duration duration, String startDate){
+        final Calendar c = Calendar.getInstance();
+        String endDate = "";
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-M-d", Locale.ENGLISH);
+        LocalDate date = LocalDate.parse(startDate, formatter);
+
+        c.set(date.getYear(), date.getMonthValue(), date.getDayOfMonth());
+
+        if (duration == Duration.ONE_DAY) {
+            c.add(Calendar.DAY_OF_MONTH, duration.getValue());
+
+        } else {
+            c.add(Calendar.MONTH, duration.getValue());
+        }
+        Price p = new Price();
+        endDate = "".concat(String.valueOf(c.get(Calendar.YEAR)).concat("-").concat(String.valueOf(c.get(Calendar.MONTH))).concat("-").concat(String.valueOf(c.get(Calendar.DAY_OF_MONTH))));
+
+      //  System.out.println(startDate);
+     //   System.out.println(endDate);
+
+        FishingCard fc;
+        if (choices[0].equals("Municipality")){
+            fc = new FishingCard(startDate, endDate, LocationType.MUNICIPALITY, new Municipality(choices[1]));
+            System.out.println("WE ARE HERE");
+            System.out.println(fc);
+            p.getPrice(duration, LocationType.MUNICIPALITY);
+            alert(fc, p);
+        } else {
+            fc = new FishingCard(startDate, endDate, LocationType.WATER, new Municipality(choices[1]), location.getLakeByMunAndName(choices[1], choices[2]));
+            System.out.println(fc);
+            p.getPrice(duration, LocationType.WATER);
+            alert(fc, p);
+        }
 
 
-/*
-    public void oneYear(){
-        Intent intent = new Intent(this, Purchase.class);
-        startActivity(intent);
-    }*/
+
+
+
+
+    }
+
+    private void alert(FishingCard fc, Price p){
+        AlertDialog.Builder dialog = new AlertDialog.Builder(Buy.this);
+        dialog.setTitle("Confirmation");
+        dialog.setNeutralButton("OK", null).create();
+        dialog.setMessage("License Order is created for " + fc + ". Price " + p);
+        dialog.create().show();
+    }
+
+    private void cleanUpAndReturn(){
+        if (radioBtnMun != null) {
+            radioBtnMun.setSelected(false);
+        }
+        if (radioBtnLake != null) {
+            radioBtnLake.setSelected(false);
+        }
+        oneDayButton.setChecked(false);
+        threeMonthButton.setChecked(false);
+        sixMonthButton.setChecked(false);
+        oneYearButton.setChecked(false);
+        date.setText("");
+
+
+         //   Intent intent = new Intent( Buy.this, Fishing_card_activity.class);
+         //   startActivity(intent);
+
+
+    }
+
+
 
     private void createRadioButton(String[] strings, RadioGroup rgMun) {
         rgMun.removeAllViewsInLayout();
         for (int i = 0; i < strings.length; i++) {
             RadioButton radioButton = new RadioButton(this);
-            if (i == 0){
+            if (i == 0) {
                 radioButton.setSelected(true);
             }
             radioButton.setText(strings[i]);

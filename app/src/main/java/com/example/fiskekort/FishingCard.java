@@ -76,10 +76,20 @@ public class FishingCard {
     }
 
     public Lake getLake() {
+        if (lake == null)
+            return lake = new Lake("All lakes within municipality", 0, 0);
         return lake;
     }
 
     public void setLake(Lake lake) {
         this.lake = lake;
+    }
+
+    @Override
+    public String toString() {
+        return "from '" + startDate + '\'' +
+                ", to '" + finishDate + '\'' +
+                " " + municipality +
+                " " + lake;
     }
 }

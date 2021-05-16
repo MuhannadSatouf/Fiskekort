@@ -24,4 +24,8 @@ public class Lake {
         return longitude;
     }
 
+    @Override
+    public String toString() {
+        return name;
+    }
 }

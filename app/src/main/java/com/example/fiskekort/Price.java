@@ -33,4 +33,9 @@ public class Price {
         }
         return price;
     }
+
+    @Override
+    public String toString() {
+        return price + "kr.";
+    }
 }

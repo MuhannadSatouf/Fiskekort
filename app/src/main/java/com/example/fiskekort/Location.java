@@ -156,7 +156,8 @@ public class Location {
         lakes.add(immeln);
  //26
 
-
+        Lake all = new Lake("All lakes within municipality", 0, 0);
+        lakes.add(all);
         return lakes;
     }
 
@@ -178,5 +179,15 @@ public class Location {
             i++;
         }
         return names;
+    }
+
+    public Lake getLakeByMunAndName(String municName, String lakeName){
+        Lake[] tmp = getLakesByArea(municName);
+        for (int i = 0; i < tmp.length; i++) {
+            if (tmp[i].getName().equals(lakeName)){
+                return tmp[i];
+            }
+        }
+        return null;
     }
 }

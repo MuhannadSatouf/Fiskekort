@@ -1,7 +1,7 @@
 package com.example.fiskekort;
 
 public class Municipality{
-    String name;
+    private String name;
 
     public Municipality(String name) {
         this.name = name;
@@ -11,4 +11,8 @@ public class Municipality{
         return name;
     }
 
+    @Override
+    public String toString() {
+        return name;
+    }
 }
