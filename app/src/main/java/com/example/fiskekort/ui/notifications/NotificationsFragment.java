@@ -68,7 +68,7 @@ public class NotificationsFragment extends Fragment implements OnMapReadyCallbac
         mapView.onResume();
         mapView.getMapAsync(this);
 
-        lakeList = lake.getAllLakes(lakeList);
+        lakeList = lake.getAllLakes();
 
 
 
