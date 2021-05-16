@@ -5,8 +5,34 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class FishingCardTest {
-  //  User testUser = new User( "MyUserName", "myEmail@gmail.com", "pa$$", "0762357845");
     FishingCard fc = new FishingCard("12345", "today", "tomorrow");
+    private final Municipality mun = new Municipality("testMun");
+    FishingCard fc2 = new FishingCard("2021-7-12", "2021-8-13", LocationType.MUNICIPALITY, mun);
+
+    @Test
+    public void constructorTest1(){
+        assertNotNull(fc2);
+    }
+
+    @Test
+    public void constructorTest2(){
+        assertEquals(LocationType.MUNICIPALITY, fc2.getLocationType());
+    }
+
+    @Test
+    public void constructorTest3(){
+        assertEquals("2021-8-13", fc2.getFinishDate());
+    }
+
+    @Test
+    public void constructorTest4(){
+        assertEquals(mun, fc2.getMunicipality());
+    }
+
+    @Test
+    public void constructorTest5(){
+        assertEquals("2021-7-12", fc2.getStartDate());
+    }
 
     @Test
     public void setCardNumber(){

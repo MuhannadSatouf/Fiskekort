@@ -39,7 +39,6 @@ public class Buy extends AppCompatActivity {
     private Location location;
     private EditText date;
     DatePickerDialog datePickerDialog;
-  //  String selectedDate = "";
     RadioButton radioBtnArea;
     RadioButton radioBtnMun;
     RadioButton radioBtnLake;
@@ -193,14 +192,18 @@ public class Buy extends AppCompatActivity {
                         choices[1] = String.valueOf(radioBtnMun.getText());
                         choices[2] = String.valueOf(radioBtnLake.getText());
                         Log.e("array: ", Arrays.toString(choices));
-                        createLicense(choices, duration, String.valueOf(date.getText()));
+
+                            createLicense(choices, duration, String.valueOf(date.getText()));
+
                     }
                 } else if (radioBtnArea.getText().equals("Municipality")) {
                     choices[0] = String.valueOf(radioBtnArea.getText());
                     choices[1] = String.valueOf(radioBtnMun.getText());
                     choices[2] = " ";
                     Log.e("array: ", Arrays.toString(choices));
-                    createLicense(choices, duration, String.valueOf(date.getText()));
+
+                        createLicense(choices, duration, String.valueOf(date.getText()));
+
                 }
 
             cleanUpAndReturn();
@@ -228,14 +231,10 @@ public class Buy extends AppCompatActivity {
         Price p = new Price();
         endDate = "".concat(String.valueOf(c.get(Calendar.YEAR)).concat("-").concat(String.valueOf(c.get(Calendar.MONTH))).concat("-").concat(String.valueOf(c.get(Calendar.DAY_OF_MONTH))));
 
-      //  System.out.println(startDate);
-     //   System.out.println(endDate);
-
         FishingCard fc;
         if (choices[0].equals("Municipality")){
+            System.out.println(startDate + " " + endDate + " " + LocationType.MUNICIPALITY + " " + new Municipality(choices[1]) );
             fc = new FishingCard(startDate, endDate, LocationType.MUNICIPALITY, new Municipality(choices[1]));
-            System.out.println("WE ARE HERE");
-            System.out.println(fc);
             p.getPrice(duration, LocationType.MUNICIPALITY);
             alert(fc, p);
         } else {
@@ -245,19 +244,19 @@ public class Buy extends AppCompatActivity {
             alert(fc, p);
         }
 
-
-
-
-
-
     }
 
-    private void alert(FishingCard fc, Price p){
+    private void alert(FishingCard fc, Price p) {
+        Intent intent = new Intent( Buy.this, Fishing_card_activity.class);
+        startActivity(intent);
+
         AlertDialog.Builder dialog = new AlertDialog.Builder(Buy.this);
         dialog.setTitle("Confirmation");
         dialog.setNeutralButton("OK", null).create();
         dialog.setMessage("License Order is created for " + fc + ". Price " + p);
         dialog.create().show();
+
+
     }
 
     private void cleanUpAndReturn(){
@@ -272,12 +271,6 @@ public class Buy extends AppCompatActivity {
         sixMonthButton.setChecked(false);
         oneYearButton.setChecked(false);
         date.setText("");
-
-
-         //   Intent intent = new Intent( Buy.this, Fishing_card_activity.class);
-         //   startActivity(intent);
-
-
     }
 
 

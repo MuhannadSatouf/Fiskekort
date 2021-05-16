@@ -32,7 +32,11 @@ public class FishingCard {
     }
 
     public FishingCard(String startDate, String finishDate, LocationType locationType, Municipality municipality){
-        new FishingCard(startDate, finishDate, locationType, municipality, null);
+        setStartDate(startDate);
+        setFinishDate(finishDate);
+        setLocationType(locationType);
+        setMunicipality(municipality);
+        setLake(null);
     }
 
     public String getCardNumber() {
