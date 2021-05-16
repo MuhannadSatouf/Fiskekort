@@ -8,9 +8,9 @@
     android:padding="16dp"
     tools:context=".ui.dashboard.DashboardFragment">
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/qrRecycleView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginBottom="25dp"/>
 </LinearLayout>

@@ -17,7 +17,7 @@
         android:text="Select the duration of your license"
         android:textSize="18sp" />
 
-    <Button
+    <CheckBox
         android:id="@+id/oneDayButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -25,9 +25,11 @@
         android:layout_marginLeft="8dp"
         android:layout_marginTop="@dimen/fab_margin"
         android:layout_marginRight="8dp"
-        android:text="1 d." />
+        android:textSize="18sp"
+        android:text="1 day" />
 
-    <Button
+
+    <CheckBox
         android:id="@+id/threeMonthButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -36,9 +38,10 @@
         android:layout_marginTop="@dimen/fab_margin"
         android:layout_marginRight="8dp"
         android:layout_toEndOf="@id/oneDayButton"
-        android:text="3 m." />
+        android:textSize="18sp"
+        android:text="3 mon" />
 
-    <Button
+    <CheckBox
         android:id="@+id/sixMonthButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -47,9 +50,10 @@
         android:layout_marginTop="@dimen/fab_margin"
         android:layout_marginRight="8dp"
         android:layout_toEndOf="@id/threeMonthButton"
-        android:text="6 m." />
+        android:textSize="18sp"
+        android:text="6 mon" />
 
-    <Button
+    <CheckBox
         android:id="@+id/yearButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -58,7 +62,8 @@
         android:layout_marginTop="@dimen/fab_margin"
         android:layout_marginRight="8dp"
         android:layout_toEndOf="@id/sixMonthButton"
-        android:text="1 y." />
+        android:textSize="18sp"
+        android:text="1 year" />
 
     <TextView
         android:id="@+id/pure_text_2"

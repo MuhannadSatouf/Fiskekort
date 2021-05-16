@@ -98,7 +98,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         } else if (password.isEmpty()) {
 
             errorMessage(editTextPassword, "Please provide Password");
-        } else if (password.length() < 8) {
+        } else if (password.length() < 8) {   // LA: please, remove this condition. Security breach! Lem them try all possible minimal number of characters before they manage to break passwords (apply it only during registration)
             errorMessage(editTextPassword, "min password length should be 8 characters");
         } else {
 
@@ -196,7 +196,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
                 if (task.getResult().getSignInMethods().size() == 0) {
                     // email not existed
-                    createToast("This email does not exist in the database, please register yourself.");
+                    createToast("This email does not exist in the database, please register yourself.");  //Never write what exactly was wrong : password or user name!
                 } else {
                     // email existed
                     mAuth.sendPasswordResetEmail(email);
