@@ -52,7 +52,7 @@ public class NotificationsFragment extends Fragment implements OnMapReadyCallbac
 
 
 
-    LatLng Skane = new LatLng(55,13);
+    LatLng skane = new LatLng(55.9,13.5);
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         notificationsViewModel = new ViewModelProvider(this).get(NotificationsViewModel.class);
@@ -103,7 +103,7 @@ public class NotificationsFragment extends Fragment implements OnMapReadyCallbac
 
         }
 
-        CameraUpdate cameraUpdate=CameraUpdateFactory.newLatLngZoom(Skane,5.0f);
+        CameraUpdate cameraUpdate=CameraUpdateFactory.newLatLngZoom(skane,8.0f);
         mMap.animateCamera(cameraUpdate);
 
 
