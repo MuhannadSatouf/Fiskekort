@@ -25,7 +25,7 @@ public class Fishing_card_activity extends AppCompatActivity implements AdapterV
     private SimpleDateFormat simpleDateFormat;
     private Spinner spinner;
     private LocalDatabaseAdapter localDatabaseAdapter;
-    private Button buyButton;
+    private Button buyButton,fishData;
     private int period;
     private boolean spinnerSelected = false;
 
@@ -47,7 +47,14 @@ public class Fishing_card_activity extends AppCompatActivity implements AdapterV
                 createCard();
             }
         });
-
+        fishData = findViewById(R.id.fishData);
+        fishData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent fishIntent = new Intent(Fishing_card_activity.this,JsonData.class);
+                Fishing_card_activity.this.startActivity(fishIntent);
+            }
+        });
         //To the SluDataBase
         Button btn = (Button) findViewById(R.id.SluDataBasebt);
         btn.setOnClickListener(new View.OnClickListener() {
