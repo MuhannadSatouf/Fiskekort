@@ -35,5 +35,6 @@
     <string name="login">Login</string>
     <string name="enter_email">Enter Email</string>
     <string name="enter_password">Enter PassWord</string>
+    <string name="enter_name">Enter Name</string>
 
 </resources>
