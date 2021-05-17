@@ -232,22 +232,22 @@ public class Buy extends AppCompatActivity {
         }
         Price p = new Price();
         endDate = "".concat(String.valueOf(c.get(Calendar.YEAR)).concat("-").concat(String.valueOf(c.get(Calendar.MONTH))).concat("-").concat(String.valueOf(c.get(Calendar.DAY_OF_MONTH))));
-
+        LocalDatabaseAdapter localDatabaseAdapter = new LocalDatabaseAdapter(getApplicationContext());
         FishingCard fc;
         if (choices[0].equals("Municipality")){
             System.out.println(startDate + " " + endDate + " " + LocationType.MUNICIPALITY + " " + new Municipality(choices[1]) );
             fc = new FishingCard(startDate, endDate, LocationType.MUNICIPALITY, new Municipality(choices[1]));
             p.getPrice(duration, LocationType.MUNICIPALITY);
+            //   localDatabaseAdapter.insertDataAsObject(fc);
             alert(fc, p);
+
         } else {
             fc = new FishingCard(startDate, endDate, LocationType.WATER, new Municipality(choices[1]), location.getLakeByMunAndName(choices[1], choices[2]));
             System.out.println(fc);
             p.getPrice(duration, LocationType.WATER);
+            //   localDatabaseAdapter.insertDataAsObject(fc);
             alert(fc, p);
         }
-        LocalDatabaseAdapter localDatabaseAdapter = new LocalDatabaseAdapter(getApplicationContext());
-        localDatabaseAdapter.insertDataAsObject(fc);
-
     }
 
     private void alert(FishingCard fc, Price p) {
