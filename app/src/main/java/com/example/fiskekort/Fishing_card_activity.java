@@ -18,15 +18,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class Fishing_card_activity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    private String startDate;
-    private String finishDate;
-    private Button create_fishing_card_button;
-    private Calendar calendar;
-    private SimpleDateFormat simpleDateFormat;
-    private Spinner spinner;
-    private LocalDatabaseAdapter localDatabaseAdapter;
-    private Button buyButton;
 
+    private LocalDatabaseAdapter localDatabaseAdapter;
+    private Button buyButton, fishData;
 
 
     @Override
@@ -35,27 +29,21 @@ public class Fishing_card_activity extends AppCompatActivity implements AdapterV
         setContentView(R.layout.activity_fishing_card_activity);
         initialize();
 
-
+        fishData = findViewById(R.id.fishData);
+        fishData.setOnClickListener(v -> {
+            Intent fishIntent = new Intent(Fishing_card_activity.this, JsonData.class);
+            Fishing_card_activity.this.startActivity(fishIntent);
+        });
 
         //To the SluDataBase
         Button btn = (Button) findViewById(R.id.SluDataBasebt);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent myIntent = new Intent(Fishing_card_activity.this, SLUDataBase.class);
-                Fishing_card_activity.this.startActivity(myIntent);
-            }
-
-
+        btn.setOnClickListener(v -> {
+            Intent myIntent = new Intent(Fishing_card_activity.this, SLUDataBase.class);
+            Fishing_card_activity.this.startActivity(myIntent);
         });
 
         buyButton = findViewById(R.id.buyButton);
-        buyButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                buy();
-            }
-        });
+        buyButton.setOnClickListener(v -> buy());
     }
 
     public void buy() {
@@ -69,7 +57,6 @@ public class Fishing_card_activity extends AppCompatActivity implements AdapterV
         localDatabaseAdapter = new LocalDatabaseAdapter(this);
 
     }
-
 
 
     //This method use for Spinner

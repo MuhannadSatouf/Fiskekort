@@ -10,16 +10,13 @@
         android:name="your.package.name.permission.MAPS_RECEIVE"
         android:protectionLevel="signature" />
 
-
-    <uses-permission android:name="com.example.fiskekort.permission.MAPS_RECEIVE"/>
+    <uses-permission android:name="com.example.fiskekort.permission.MAPS_RECEIVE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
-
 
     <application
         android:allowBackup="true"
@@ -28,7 +25,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FiskeKort">
-
+        <activity android:name=".FishStatistics"></activity>
+        <activity android:name=".JsonData" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -37,8 +35,6 @@
              sign the APK for publishing.
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
-
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
@@ -48,7 +44,6 @@
         <activity android:name=".Register" />
         <activity android:name=".Buy" />
         <activity android:name=".SLUDataBase" />
-
         <activity android:name=".HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.icu.util.Calendar;
 import android.os.Bundle;
@@ -12,8 +11,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -25,10 +22,8 @@ import com.example.fiskekort.LocalDB.LocalDatabaseAdapter;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.Locale;
 
-import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 
 public class Buy extends AppCompatActivity {
@@ -225,7 +220,6 @@ public class Buy extends AppCompatActivity {
     }
 
     private void alert(FishingCard fc, Price p) {
-
         AlertDialog.Builder dialog = new AlertDialog.Builder(Buy.this);
         dialog.setTitle("Confirmation");
         dialog.setNeutralButton("OK", null).create();
