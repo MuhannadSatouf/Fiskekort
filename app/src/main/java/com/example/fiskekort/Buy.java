@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.icu.util.Calendar;
 import android.os.Bundle;
@@ -52,51 +53,39 @@ public class Buy extends AppCompatActivity {
         setContentView(R.layout.activity_buy);
 
         oneDayButton = findViewById(R.id.oneDayButton);
-        oneDayButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    duration = Duration.ONE_DAY;
-                    threeMonthButton.setChecked(false);
-                    sixMonthButton.setChecked(false);
-                    oneYearButton.setChecked(false);
-                }
+        oneDayButton.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                duration = Duration.ONE_DAY;
+                threeMonthButton.setChecked(false);
+                sixMonthButton.setChecked(false);
+                oneYearButton.setChecked(false);
             }
         });
         threeMonthButton = findViewById(R.id.threeMonthButton);
-        threeMonthButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    duration = Duration.THREE_MONTHS;
-                    oneDayButton.setChecked(false);
-                    sixMonthButton.setChecked(false);
-                    oneYearButton.setChecked(false);
-                }
+        threeMonthButton.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                duration = Duration.THREE_MONTHS;
+                oneDayButton.setChecked(false);
+                sixMonthButton.setChecked(false);
+                oneYearButton.setChecked(false);
             }
         });
         sixMonthButton = findViewById(R.id.sixMonthButton);
-        sixMonthButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    duration = Duration.SIX_MONTHS;
-                    oneDayButton.setChecked(false);
-                    threeMonthButton.setChecked(false);
-                    oneYearButton.setChecked(false);
-                }
+        sixMonthButton.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                duration = Duration.SIX_MONTHS;
+                oneDayButton.setChecked(false);
+                threeMonthButton.setChecked(false);
+                oneYearButton.setChecked(false);
             }
         });
         oneYearButton = findViewById(R.id.yearButton);
-        oneYearButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    duration = Duration.YEAR;
-                    oneDayButton.setChecked(false);
-                    threeMonthButton.setChecked(false);
-                    sixMonthButton.setChecked(false);
-                }
+        oneYearButton.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                duration = Duration.YEAR;
+                oneDayButton.setChecked(false);
+                threeMonthButton.setChecked(false);
+                sixMonthButton.setChecked(false);
             }
         });
 
@@ -104,28 +93,25 @@ public class Buy extends AppCompatActivity {
         date = (EditText) findViewById(R.id.date);
 
 
-        date.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // calender class's instance and get current date , month and year from calender
-                final Calendar c = Calendar.getInstance();
-                int mYear = c.get(Calendar.YEAR); // current year
-                int mMonth = c.get(Calendar.MONTH); // current month
-                int mDay = c.get(Calendar.DAY_OF_MONTH); // current day
-                // date picker dialog
-                datePickerDialog = new DatePickerDialog(Buy.this,
-                        (view, year, monthOfYear, dayOfMonth) -> {
-                            // set day of month , month and year value in the edit text
-                            //   date.setText(dayOfMonth + "-"
-                            //           + (monthOfYear+1) + "-" + year);
-                            date.setText(year + "-" +  (monthOfYear+1) + "-" + dayOfMonth);
-                            //here create a variable
-                            //      selectedDate.concat(String.valueOf(year)).concat("-").concat(String.valueOf(monthOfYear+1)).concat("-").concat(String.valueOf(dayOfMonth));  //yyyy/mm/dd
+        date.setOnClickListener(v -> {
+            // calender class's instance and get current date , month and year from calender
+            final Calendar c = Calendar.getInstance();
+            int mYear = c.get(Calendar.YEAR); // current year
+            int mMonth = c.get(Calendar.MONTH); // current month
+            int mDay = c.get(Calendar.DAY_OF_MONTH); // current day
+            // date picker dialog
+            datePickerDialog = new DatePickerDialog(Buy.this,
+                    (view, year, monthOfYear, dayOfMonth) -> {
+                        // set day of month , month and year value in the edit text
+                        //   date.setText(dayOfMonth + "-"
+                        //           + (monthOfYear+1) + "-" + year);
+                        date.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
+                        //here create a variable
+                        //      selectedDate.concat(String.valueOf(year)).concat("-").concat(String.valueOf(monthOfYear+1)).concat("-").concat(String.valueOf(dayOfMonth));  //yyyy/mm/dd
 
-                        }, mYear, mMonth, mDay);
-                datePickerDialog.show();
-                System.out.println(date.getText());
-            }
+                    }, mYear, mMonth, mDay);
+            datePickerDialog.show();
+            System.out.println(date.getText());
         });
 
         final RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radio_group);
@@ -136,86 +122,74 @@ public class Buy extends AppCompatActivity {
         String[] municipalities = location.getAllMunicipalityNames();
         createRadioButton(municipalities, rgMun);
 
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                RadioButton radioBtn = (RadioButton) findViewById(radioGroup.getCheckedRadioButtonId());
+        radioGroup.setOnCheckedChangeListener((RadioGroup.OnCheckedChangeListener) (group, checkedId) -> {
+            RadioButton radioBtn = (RadioButton) findViewById(radioGroup.getCheckedRadioButtonId());
 
-                if (radioBtn.getText().equals("Municipality")) {
-                    rgMun.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                        @Override
-                        public void onCheckedChanged(RadioGroup group, int checkedId) {
-                            rgLake.setVisibility(View.GONE);
-                            hiddenText_mun.setText("");
+            if (radioBtn.getText().equals("Municipality")) {
+                rgMun.setOnCheckedChangeListener((RadioGroup.OnCheckedChangeListener) (group12, checkedId12) -> {
+                    rgLake.setVisibility(View.GONE);
+                    hiddenText_mun.setText("");
 
-                            RadioButton selected0 = (RadioButton) findViewById(rgMun.getCheckedRadioButtonId());
-                            hiddenText_mun.setText(selected0.getText());
-                        }
-                    });
-                } else {
-                    rgLake.setVisibility(VISIBLE);
-                    rgMun.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                        @Override
-                        public void onCheckedChanged(RadioGroup group, int checkedId) {
-                            hiddenText_mun.setText("");
-                            RadioButton selected = (RadioButton) findViewById(rgMun.getCheckedRadioButtonId());
-                            hiddenText_mun.setText(selected.getText());
+                    RadioButton selected0 = (RadioButton) findViewById(rgMun.getCheckedRadioButtonId());
+                    hiddenText_mun.setText(selected0.getText());
+                });
+            } else {
+                rgLake.setVisibility(VISIBLE);
+                rgMun.setOnCheckedChangeListener((RadioGroup.OnCheckedChangeListener) (group1, checkedId1) -> {
+                    hiddenText_mun.setText("");
+                    RadioButton selected = (RadioButton) findViewById(rgMun.getCheckedRadioButtonId());
+                    hiddenText_mun.setText(selected.getText());
 
-                            String[] lakes = location.getLakesNamesByArea(String.valueOf(hiddenText_mun.getText()));
-                            createRadioButton(lakes, rgLake);
-                        }
-                    });
-                }
-
+                    String[] lakes = location.getLakesNamesByArea(String.valueOf(hiddenText_mun.getText()));
+                    createRadioButton(lakes, rgLake);
+                });
             }
+
         });
 
 
-        btnProceed.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        btnProceed.setOnClickListener((View.OnClickListener) v -> {
 
-                radioBtnArea = (RadioButton) findViewById(radioGroup.getCheckedRadioButtonId());
-                radioBtnMun = (RadioButton) findViewById(rgMun.getCheckedRadioButtonId());
-                radioBtnLake = (RadioButton) findViewById(rgLake.getCheckedRadioButtonId());
-                String[] choices = new String[3];  // 0- area, 1 - mun, 2 - lake
+            radioBtnArea = (RadioButton) findViewById(radioGroup.getCheckedRadioButtonId());
+            radioBtnMun = (RadioButton) findViewById(rgMun.getCheckedRadioButtonId());
+            radioBtnLake = (RadioButton) findViewById(rgLake.getCheckedRadioButtonId());
+            String[] choices = new String[3];  // 0- area, 1 - mun, 2 - lake
 
-                if (duration == null) {
-                    Toast.makeText(Buy.this, R.string.warning_missing_duration, Toast.LENGTH_SHORT).show();
-                } else if (String.valueOf(date.getText()).isEmpty()) {
-                    Toast.makeText(Buy.this, R.string.warning_missing_date, Toast.LENGTH_SHORT).show();
-                } else if (radioBtnMun == null) {
-                    Toast.makeText(Buy.this, R.string.warning_missing_municipality, Toast.LENGTH_SHORT).show();
-                } else if (radioBtnArea.getText().equals("Single Lake")) {
-                    if (radioBtnLake == null) {
-                        Toast.makeText(Buy.this, R.string.warning_missing_lake, Toast.LENGTH_SHORT).show();
-                    } else {
-                        choices[0] = String.valueOf(radioBtnArea.getText());
-                        choices[1] = String.valueOf(radioBtnMun.getText());
-                        choices[2] = String.valueOf(radioBtnLake.getText());
-                        Log.e("array: ", Arrays.toString(choices));
-
-                        createLicense(choices, duration, String.valueOf(date.getText()));
-
-                    }
-                } else if (radioBtnArea.getText().equals("Municipality")) {
+            if (duration == null) {
+                Toast.makeText(Buy.this, R.string.warning_missing_duration, Toast.LENGTH_SHORT).show();
+            } else if (String.valueOf(date.getText()).isEmpty()) {
+                Toast.makeText(Buy.this, R.string.warning_missing_date, Toast.LENGTH_SHORT).show();
+            } else if (radioBtnMun == null) {
+                Toast.makeText(Buy.this, R.string.warning_missing_municipality, Toast.LENGTH_SHORT).show();
+            } else if (radioBtnArea.getText().equals("Single Lake")) {
+                if (radioBtnLake == null) {
+                    Toast.makeText(Buy.this, R.string.warning_missing_lake, Toast.LENGTH_SHORT).show();
+                } else {
                     choices[0] = String.valueOf(radioBtnArea.getText());
                     choices[1] = String.valueOf(radioBtnMun.getText());
-                    choices[2] = " ";
+                    choices[2] = String.valueOf(radioBtnLake.getText());
                     Log.e("array: ", Arrays.toString(choices));
 
                     createLicense(choices, duration, String.valueOf(date.getText()));
 
                 }
+            } else if (radioBtnArea.getText().equals("Municipality")) {
+                choices[0] = String.valueOf(radioBtnArea.getText());
+                choices[1] = String.valueOf(radioBtnMun.getText());
+                choices[2] = " ";
+                Log.e("array: ", Arrays.toString(choices));
 
-                cleanUpAndReturn();
+                createLicense(choices, duration, String.valueOf(date.getText()));
+
             }
+
+            cleanUpAndReturn();
         });
 
 
     }
 
-    private void createLicense(String[] choices, Duration duration, String startDate){
+    private void createLicense(String[] choices, Duration duration, String startDate) {
         final Calendar c = Calendar.getInstance();
         String endDate = "";
 
@@ -234,25 +208,23 @@ public class Buy extends AppCompatActivity {
         endDate = "".concat(String.valueOf(c.get(Calendar.YEAR)).concat("-").concat(String.valueOf(c.get(Calendar.MONTH))).concat("-").concat(String.valueOf(c.get(Calendar.DAY_OF_MONTH))));
         LocalDatabaseAdapter localDatabaseAdapter = new LocalDatabaseAdapter(getApplicationContext());
         FishingCard fc;
-        if (choices[0].equals("Municipality")){
-            System.out.println(startDate + " " + endDate + " " + LocationType.MUNICIPALITY + " " + new Municipality(choices[1]) );
+        if (choices[0].equals("Municipality")) {
+            System.out.println(startDate + " " + endDate + " " + LocationType.MUNICIPALITY + " " + new Municipality(choices[1]));
             fc = new FishingCard(startDate, endDate, LocationType.MUNICIPALITY, new Municipality(choices[1]));
             p.getPrice(duration, LocationType.MUNICIPALITY);
-            //   localDatabaseAdapter.insertDataAsObject(fc);
+            localDatabaseAdapter.insertDataAsObject(fc);
             alert(fc, p);
 
         } else {
             fc = new FishingCard(startDate, endDate, LocationType.WATER, new Municipality(choices[1]), location.getLakeByMunAndName(choices[1], choices[2]));
             System.out.println(fc);
             p.getPrice(duration, LocationType.WATER);
-            //   localDatabaseAdapter.insertDataAsObject(fc);
+            localDatabaseAdapter.insertDataAsObject(fc);
             alert(fc, p);
         }
     }
 
     private void alert(FishingCard fc, Price p) {
-        Intent intent = new Intent( Buy.this, Fishing_card_activity.class);
-        startActivity(intent);
 
         AlertDialog.Builder dialog = new AlertDialog.Builder(Buy.this);
         dialog.setTitle("Confirmation");
@@ -260,10 +232,16 @@ public class Buy extends AppCompatActivity {
         dialog.setMessage("License Order is created for " + fc + ". Price " + p);
         dialog.create().show();
 
+        dialog.setNegativeButton("OK", (dialog1, which) -> {
+            Intent intent = new Intent(Buy.this, Fishing_card_activity.class);
+            startActivity(intent);
+
+        });
+
 
     }
 
-    private void cleanUpAndReturn(){
+    private void cleanUpAndReturn() {
         if (radioBtnMun != null) {
             radioBtnMun.setSelected(false);
         }
@@ -276,7 +254,6 @@ public class Buy extends AppCompatActivity {
         oneYearButton.setChecked(false);
         date.setText("");
     }
-
 
 
     private void createRadioButton(String[] strings, RadioGroup rgMun) {

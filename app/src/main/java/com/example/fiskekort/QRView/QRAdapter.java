@@ -2,7 +2,6 @@ package com.example.fiskekort.QRView;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 
 import com.example.fiskekort.R;
 
@@ -58,7 +56,7 @@ public class QRAdapter extends RecyclerView.Adapter<QRAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull QRAdapter.ViewHolder holder, int position) {
         holder.kommun.setText(kommuns.get(position));
-        //holder.rowDescription.setText(description.get(position));
+        holder.rowDescription.setText(description.get(position));
 
         System.out.println(images.size());
         holder.rowImage.setImageBitmap(images.get(position));

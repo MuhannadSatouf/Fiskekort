@@ -1,6 +1,5 @@
 package com.example.fiskekort.ui.home;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -9,6 +8,7 @@ import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -16,10 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.fiskekort.Fishing_card_activity;
@@ -28,7 +26,6 @@ import com.example.fiskekort.Register;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
@@ -53,6 +50,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
+
+
         editTextEmail = root.findViewById(R.id.loginEmail);
         editTextPassword = root.findViewById(R.id.loginPassword);
         button = root.findViewById(R.id.loginButton);
@@ -63,6 +62,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         TextView forgetPassword = root.findViewById(R.id.forgetPassword);
         forgetPassword.setOnClickListener(this);
         mAuth = FirebaseAuth.getInstance();
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         return root;
     }
     //Onclicklistner =)
@@ -98,8 +98,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         } else if (password.isEmpty()) {
 
             errorMessage(editTextPassword, "Please provide Password");
-        } else if (password.length() < 8) {   // LA: please, remove this condition. Security breach! Lem them try all possible minimal number of characters before they manage to break passwords (apply it only during registration)
-            errorMessage(editTextPassword, "min password length should be 8 characters");
+
         } else {
 
             progressBar.setVisibility(View.VISIBLE);
@@ -128,7 +127,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     }
                     // if user enters wrong password.
                     catch (FirebaseAuthInvalidCredentialsException wrongPassword) {
-                        createToast("Wrong Password! Try again.");
+                        createToast("Wrong Password or Email! Try again.");
 
                     } catch (Exception e) {
 
@@ -185,7 +184,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             errorMessage(forgetPasswordEmail, "Please provide valid email");
         } else {
             checkEmailExistsOrNot(email);
-           //mAuth.sendPasswordResetEmail(email).addOnCompleteListener(task -> createToast("Check your email"));
+            //mAuth.sendPasswordResetEmail(email).addOnCompleteListener(task -> createToast("Check your email"));
         }
     }
 

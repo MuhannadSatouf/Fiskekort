@@ -39,6 +39,59 @@ public class LocalDatabaseAdapter {
     }
 
 
+    public ArrayList<String> getKommun() {
+        ArrayList<String> kommuns = new ArrayList<>();
+        SQLiteDatabase db = localDatabaseHelper.getWritableDatabase();
+        String[] columns = {LocalDatabaseHelper.CARD_ID, LocalDatabaseHelper.START_DATE,
+                LocalDatabaseHelper.FINISH_DATE, LocalDatabaseHelper.LOCATION_TYPE,
+                LocalDatabaseHelper.Municipality, LocalDatabaseHelper.Lake};
+        Cursor cursor = db.query(LocalDatabaseHelper.TABLE_NAME, columns, null, null, null, null, null);
+        StringBuffer buffer = new StringBuffer();
+        while (cursor.moveToNext()) {
+
+            String municipality = cursor.getString(cursor.getColumnIndex(LocalDatabaseHelper.Municipality));
+            kommuns.add(municipality);
+        }
+        return kommuns;
+    }
+
+    public ArrayList<String> getDescription() {
+        ArrayList<String> description = new ArrayList<>();
+        SQLiteDatabase db = localDatabaseHelper.getWritableDatabase();
+        String[] columns = {LocalDatabaseHelper.CARD_ID, LocalDatabaseHelper.START_DATE,
+                LocalDatabaseHelper.FINISH_DATE, LocalDatabaseHelper.LOCATION_TYPE,
+                LocalDatabaseHelper.Municipality, LocalDatabaseHelper.Lake};
+
+        Cursor cursor = db.query(LocalDatabaseHelper.TABLE_NAME, columns, null, null, null, null, null);
+        StringBuffer buffer = new StringBuffer();
+        while (cursor.moveToNext()) {
+
+            String expireDate = cursor.getString(cursor.getColumnIndex(LocalDatabaseHelper.FINISH_DATE));
+            String lake = cursor.getString(cursor.getColumnIndex(LocalDatabaseHelper.Lake));
+            String result = "Expire date:" + expireDate + "\nLake: " + lake;
+            description.add(result);
+        }
+        return description;
+    }
+
+    public ArrayList<String> getExpiredDate() {
+        ArrayList<String> expiredDate = new ArrayList<>();
+        SQLiteDatabase db = localDatabaseHelper.getWritableDatabase();
+        String[] columns = {LocalDatabaseHelper.CARD_ID, LocalDatabaseHelper.START_DATE,
+                LocalDatabaseHelper.FINISH_DATE, LocalDatabaseHelper.LOCATION_TYPE,
+                LocalDatabaseHelper.Municipality, LocalDatabaseHelper.Lake};
+
+        Cursor cursor = db.query(LocalDatabaseHelper.TABLE_NAME, columns, null, null, null, null, null);
+        StringBuffer buffer = new StringBuffer();
+        while (cursor.moveToNext()) {
+
+            String expireDate = cursor.getString(cursor.getColumnIndex(LocalDatabaseHelper.FINISH_DATE));
+            expiredDate.add(expireDate);
+        }
+        return expiredDate;
+    }
+
+
     public String getDataAsObject() {
         SQLiteDatabase db = localDatabaseHelper.getWritableDatabase();
         String[] columns = {LocalDatabaseHelper.CARD_ID, LocalDatabaseHelper.START_DATE,
@@ -56,22 +109,6 @@ public class LocalDatabaseAdapter {
             buffer.append(card_id + "   " + start_date + "   " + finish_date + location_type + "   " + municipality + "   " + lake + "   " + " \n");
         }
         return buffer.toString();
-    }
-
-    public ArrayList<String> getKommun() {
-        ArrayList<String> kommuns = new ArrayList<>();
-        SQLiteDatabase db = localDatabaseHelper.getWritableDatabase();
-        String[] columns = {LocalDatabaseHelper.CARD_ID, LocalDatabaseHelper.START_DATE,
-                LocalDatabaseHelper.FINISH_DATE, LocalDatabaseHelper.LOCATION_TYPE,
-                LocalDatabaseHelper.Municipality, LocalDatabaseHelper.Lake};
-        Cursor cursor = db.query(LocalDatabaseHelper.TABLE_NAME, columns, null, null, null, null, null);
-        StringBuffer buffer = new StringBuffer();
-        while (cursor.moveToNext()) {
-
-            String municipality = cursor.getString(cursor.getColumnIndex(LocalDatabaseHelper.Municipality));
-            kommuns.add(municipality);
-        }
-        return kommuns;
     }
 
     public ArrayList<FishingCard> getListOfData() {
@@ -131,11 +168,11 @@ public class LocalDatabaseAdapter {
         return cardList;
     }
 
-    public int delete(String uname) {
+    public int delete(String date) {
         SQLiteDatabase db = localDatabaseHelper.getWritableDatabase();
-        String[] whereArgs = {uname};
+        String[] whereArgs = {date};
 
-        int count = db.delete(LocalDatabaseHelper.TABLE_NAME, LocalDatabaseHelper.START_DATE + " = ?", whereArgs);
+        int count = db.delete(LocalDatabaseHelper.TABLE_NAME, LocalDatabaseHelper.FINISH_DATE + " = ?", whereArgs);
         return count;
     }
 

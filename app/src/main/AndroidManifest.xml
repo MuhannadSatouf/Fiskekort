@@ -42,10 +42,9 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
-
         <activity
             android:name=".Fishing_card_activity"
-            android:theme="@style/Theme.FiskeKort.NoActionBar" />
+            android:theme="@style/Theme.FiskeKort" />
         <activity android:name=".Register" />
         <activity android:name=".Buy" />
         <activity android:name=".SLUDataBase" />
