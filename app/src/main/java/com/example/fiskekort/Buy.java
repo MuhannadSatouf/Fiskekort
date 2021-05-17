@@ -238,22 +238,19 @@ public class Buy extends AppCompatActivity {
             System.out.println(startDate + " " + endDate + " " + LocationType.MUNICIPALITY + " " + new Municipality(choices[1]) );
             fc = new FishingCard(startDate, endDate, LocationType.MUNICIPALITY, new Municipality(choices[1]));
             p.getPrice(duration, LocationType.MUNICIPALITY);
-            //   localDatabaseAdapter.insertDataAsObject(fc);
+            localDatabaseAdapter.insertDataAsObject(fc);
             alert(fc, p);
 
         } else {
             fc = new FishingCard(startDate, endDate, LocationType.WATER, new Municipality(choices[1]), location.getLakeByMunAndName(choices[1], choices[2]));
             System.out.println(fc);
             p.getPrice(duration, LocationType.WATER);
-            //   localDatabaseAdapter.insertDataAsObject(fc);
+            localDatabaseAdapter.insertDataAsObject(fc);
             alert(fc, p);
         }
     }
 
     private void alert(FishingCard fc, Price p) {
-        Intent intent = new Intent( Buy.this, Fishing_card_activity.class);
-        startActivity(intent);
-
         AlertDialog.Builder dialog = new AlertDialog.Builder(Buy.this);
         dialog.setTitle("Confirmation");
         dialog.setNeutralButton("OK", null).create();
