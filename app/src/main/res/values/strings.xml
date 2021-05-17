@@ -32,5 +32,8 @@
     <string name="warning_missing_date">"Please, select an activation date"</string>
     <string name="warning_missing_municipality">"Please, select a municipality"</string>
     <string name="warning_missing_lake">"Please, select a lake"</string>
+    <string name="login">Login</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="enter_password">Enter PassWord</string>
 
 </resources>
