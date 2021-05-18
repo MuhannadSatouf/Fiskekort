@@ -1,6 +1,7 @@
 package com.example.fiskekort;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -135,9 +136,21 @@ public class Buy extends AppCompatActivity {
                     hiddenText_mun.setText("");
                     RadioButton selected = (RadioButton) findViewById(rgMun.getCheckedRadioButtonId());
                     hiddenText_mun.setText(selected.getText());
+                    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                    BuyFragment fragment = BuyFragment.newInstance(String.valueOf(selected.getText()));
+                    ft.replace(R.id.option_buttons_lake, fragment);
+                    ft.show(fragment);
 
-                    String[] lakes = location.getLakesNamesByArea(String.valueOf(hiddenText_mun.getText()));
-                    createRadioButton(lakes, rgLake);
+                    ft.commit();
+
+
+                  /*  FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+// Replace the contents of the container with the new fragment
+                    ft.add(R.id.option_buttons_lake, new BuyFragment());
+// or ft.add(R.id.your_placeholder, new FooFragment());
+// Complete the changes added above
+                    ft.commit();*/
+                //    createRadioButton(lakes, rgLake);
                 });
             }
 

@@ -172,6 +172,15 @@
         </LinearLayout>
     </ScrollView>
 
+    <FrameLayout
+        android:id="@+id/option_buttons_lake"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toEndOf="@id/scroller"
+        android:layout_below="@id/radio_group"
+        android:layout_above="@id/b_Proceed">
+    </FrameLayout>
+
     <Button
         android:id="@+id/b_Proceed"
         android:layout_width="170dp"
