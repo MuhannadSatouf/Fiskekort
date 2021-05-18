@@ -15,8 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnTjörnarp"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/btnImmeln" />
 
     <Button
         android:id="@+id/btnTjörnarp"
@@ -31,7 +30,7 @@
         android:id="@+id/btnRönne"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="16dp"
         android:text="RönneSjön"
         app:layout_constraintStart_toEndOf="@+id/btnTjörnarp"
@@ -39,12 +38,31 @@
 
     <Button
         android:id="@+id/btnClear"
-        android:layout_width="94dp"
-        android:layout_height="41dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="4dp"
         android:text="clear"
-        app:layout_constraintStart_toEndOf="@+id/btnRönne"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/btnRingSjön"
+        app:layout_constraintTop_toBottomOf="@+id/btnRönne" />
+
+    <Button
+        android:id="@+id/btnImmeln"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Immeln"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnTjörnarp" />
+
+    <Button
+        android:id="@+id/btnRingSjön"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="4dp"
+        android:text="Ringsjön"
+        app:layout_constraintStart_toEndOf="@+id/btnImmeln"
+        app:layout_constraintTop_toBottomOf="@+id/btnRönne" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
