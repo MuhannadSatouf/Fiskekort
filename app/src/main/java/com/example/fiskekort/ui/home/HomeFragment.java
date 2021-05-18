@@ -101,8 +101,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
         } else {
 
-            progressBar.setVisibility(View.VISIBLE);
-
             mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
 

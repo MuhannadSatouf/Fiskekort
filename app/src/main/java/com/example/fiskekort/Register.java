@@ -98,7 +98,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
             return;
         }
 
-        progressBar.setVisibility(View.VISIBLE);
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
@@ -112,7 +111,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                                 if (task1.isSuccessful()) {
                                     createToast("User has been registered successfully", Register.this);
                                     finish();
-                                    progressBar.setVisibility(View.INVISIBLE);
                                 } else {
                                     createToast("Failed to register! Try again", Register.this);
                                 }
