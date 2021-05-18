@@ -37,9 +37,10 @@ public class Buy extends AppCompatActivity {
     private Location location;
     private EditText date;
     DatePickerDialog datePickerDialog;
-    RadioButton radioBtnArea;
-    RadioButton radioBtnMun;
-    RadioButton radioBtnLake;
+    private RadioGroup rgLake;
+    private RadioButton radioBtnArea;
+    private RadioButton radioBtnMun;
+    private RadioButton radioBtnLake;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,7 +112,7 @@ public class Buy extends AppCompatActivity {
 
         final RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radio_group);
         final RadioGroup rgMun = (RadioGroup) findViewById(R.id.rg_municipality);
-        final RadioGroup rgLake = (RadioGroup) findViewById(R.id.rg_lake);
+        rgLake = (RadioGroup) findViewById(R.id.rg_lake);
         final TextView hiddenText_mun = (TextView) findViewById(R.id.invisible_mun);
 
         String[] municipalities = location.getAllMunicipalityNames();
@@ -185,6 +186,8 @@ public class Buy extends AppCompatActivity {
     }
 
     private void createLicense(String[] choices, Duration duration, String startDate) {
+        radioBtnLake = (RadioButton) findViewById(rgLake.getCheckedRadioButtonId());
+
         final Calendar c = Calendar.getInstance();
         String endDate = "";
 
@@ -192,26 +195,28 @@ public class Buy extends AppCompatActivity {
         LocalDate date = LocalDate.parse(startDate, formatter);
 
         c.set(date.getYear(), date.getMonthValue(), date.getDayOfMonth());
+        System.out.println(c.toString());
 
         if (duration == Duration.ONE_DAY) {
-            c.add(Calendar.DAY_OF_MONTH, duration.getValue());
+            endDate = date.plusDays(duration.getValue()).toString();
 
         } else {
             c.add(Calendar.MONTH, duration.getValue());
+            endDate = date.plusMonths(duration.getValue()).toString();
         }
+
         Price p = new Price();
-        endDate = "".concat(String.valueOf(c.get(Calendar.YEAR)).concat("-").concat(String.valueOf(c.get(Calendar.MONTH))).concat("-").concat(String.valueOf(c.get(Calendar.DAY_OF_MONTH))));
+
         LocalDatabaseAdapter localDatabaseAdapter = new LocalDatabaseAdapter(getApplicationContext());
         FishingCard fc;
         if (choices[0].equals("Municipality")) {
-            System.out.println(startDate + " " + endDate + " " + LocationType.MUNICIPALITY + " " + new Municipality(choices[1]));
             fc = new FishingCard(startDate, endDate, LocationType.MUNICIPALITY, new Municipality(choices[1]));
             p.getPrice(duration, LocationType.MUNICIPALITY);
             localDatabaseAdapter.insertDataAsObject(fc);
             alert(fc, p);
 
         } else {
-            fc = new FishingCard(startDate, endDate, LocationType.WATER, new Municipality(choices[1]), location.getLakeByMunAndName(choices[1], choices[2]));
+            fc = new FishingCard(startDate, endDate, LocationType.WATER, new Municipality(choices[1]), location.getLakeByMunAndName(choices[1], String.valueOf(radioBtnLake.getText())));
             System.out.println(fc);
             p.getPrice(duration, LocationType.WATER);
             localDatabaseAdapter.insertDataAsObject(fc);
