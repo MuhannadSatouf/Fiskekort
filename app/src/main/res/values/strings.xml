@@ -28,7 +28,7 @@
     <string name="forget_password">Forget Password</string>
     <string name="no_accoount_press_here">No accoount? Press here!</string>
 
-    <string name="warning_missing_duration">"Please, select an the duration of your license"</string>
+    <string name="warning_missing_duration">"Please, select duration of your license"</string>
     <string name="warning_missing_date">"Please, select an activation date"</string>
     <string name="warning_missing_municipality">"Please, select a municipality"</string>
     <string name="warning_missing_lake">"Please, select a lake"</string>
