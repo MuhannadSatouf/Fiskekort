@@ -172,7 +172,7 @@
         </LinearLayout>
     </ScrollView>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/b_Proceed"
         android:layout_width="170dp"
         android:layout_height="50dp"
@@ -182,6 +182,7 @@
         android:layout_marginBottom="@dimen/fab_margin"
         android:layout_marginTop="@dimen/fab_margin"
         android:text="Proceed"
+        android:background="@drawable/button_desgine2"
         android:textColor="#fff"
         android:textSize="20sp"
         android:textStyle="bold" />

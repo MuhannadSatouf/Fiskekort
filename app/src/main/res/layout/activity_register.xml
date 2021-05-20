@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bb"
+    android:background="@drawable/background11"
     tools:context=".Register">
 
     <EditText
@@ -102,7 +102,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="25dp"
-        android:background="@drawable/btn_bg"
+        android:background="@drawable/button_desgine2"
         android:hint="Register"
         android:textColorHint="@color/primaryTextColor"
         app:layout_constraintBottom_toTopOf="@+id/textReturnToLogin"
@@ -132,7 +132,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Already have an Account? press here!"
-        android:textColor="#FA0202"
+        android:textColor="@color/lightPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

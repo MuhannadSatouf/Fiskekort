@@ -3,27 +3,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fishing_background"
+    android:background="@drawable/background11"
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".Fishing_card_activity">
 
 
-    <Button
-        android:id="@+id/SluDataBasebt"
-        android:layout_width="145dp"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buyButton"
+        android:layout_marginTop="50dp"
+        android:layout_width="152dp"
         android:layout_height="wrap_content"
-        android:text="SLU DataBase" />
-    <Button
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/button_desgine2"
+        android:text="Buy License" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="20dp"
+        android:background="#1F78BF" />
+
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/fishData"
         android:layout_width="145dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/button_desgine2"
         android:text="Fish statistics" />
 
-    <Button
-        android:id="@+id/buyButton"
-        android:layout_width="152dp"
+    <View
+
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="20dp"
+        android:background="#1F78BF" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/SluDataBasebt"
+        android:layout_width="145dp"
         android:layout_height="wrap_content"
-        android:text="Buy License" />
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/button_desgine2"
+        android:text="SLU DataBase" />
 
 </LinearLayout>

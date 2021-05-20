@@ -12,8 +12,9 @@
         android:layout_height="50dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:background="?android:attr/windowBackground"
-
+        android:background="@color/DarkPrimaryTextColor"
+        app:itemRippleColor="@color/white"
+        app:itemIconTint="#091E1C"
         app:menu="@menu/bottom_nav_menu" />
 
     <fragment
