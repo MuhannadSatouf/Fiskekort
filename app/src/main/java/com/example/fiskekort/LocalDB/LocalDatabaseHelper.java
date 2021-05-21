@@ -3,8 +3,6 @@ package com.example.fiskekort.LocalDB;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.content.ContentValues;
-import android.database.Cursor;
 
 
 public class LocalDatabaseHelper extends SQLiteOpenHelper {
@@ -14,19 +12,19 @@ public class LocalDatabaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_Version = 1;
 
     //Columns
-    private static final String CARD_ID="card_id";
+    private static final String CARD_ID = "card_id";
     private static final String START_DATE = "start_date";
     private static final String FINISH_DATE = "finish_date";
 
-    private static final String CREATE_TABLE ="CREATE TABLE "+TABLE_NAME+
-            " ("+CARD_ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+ START_DATE +" VARCHAR(255) ,"+ FINISH_DATE +" VARCHAR(225));";
+    private static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME +
+            " (" + CARD_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + START_DATE + " VARCHAR(255) ," + FINISH_DATE + " VARCHAR(225));";
 
-    private static final String DROP_TABLE ="DROP TABLE IF EXISTS "+TABLE_NAME;
-    private Context context;
+    private static final String DROP_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME;
+    private final Context context;
 
     public LocalDatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_Version);
-        this.context=context;
+        this.context = context;
     }
 
     @Override
@@ -44,8 +42,9 @@ public class LocalDatabaseHelper extends SQLiteOpenHelper {
         try {
             db.execSQL(DROP_TABLE);
             onCreate(db);
-        }catch (Exception e) {
+        } catch (Exception e) {
 
         }
     }
+
 }

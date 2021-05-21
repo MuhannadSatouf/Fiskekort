@@ -1,4 +1,5 @@
 <resources>
+
     <string name="app_name">FiskeKort</string>
     <string name="create_a_card">Create a card</string>
     <string name="title_activity_create_fishing_card_activity">create_fishing_card_activity</string>
@@ -11,14 +12,37 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="Create_card">Create fishing card</string>
+    <string name="map_key" translatable="false">AIzaSyCeUNROGMMFVNZC7BYUxKb0jV6aZLywS2w </string>
 
     <string-array name="period">
-        <item>One month</item>
+        <item>One day</item>
+        <item>Three months</item>
         <item>Six months </item>
         <item>One year</item>
 
     </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="license_desc_skane">This is a license for Fishing in Skane region</string>
+    <string name="title_activity_home">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Licences</string>
+    <string name="title_notifications">Map</string>
+    <string name="forget_password">Forget Password</string>
+    <string name="no_accoount_press_here">No accoount? Press here!</string>
+
+    <string name="warning_missing_duration">"Please, select duration of your license"</string>
+    <string name="warning_missing_date">"Please, select an activation date"</string>
+    <string name="warning_missing_municipality">"Please, select a municipality"</string>
+    <string name="warning_missing_lake">"Please, select a lake"</string>
+    <string name="login">Login</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="enter_password">Enter PassWord</string>
+    <string name="enter_name">Enter Name</string>
+    <string name="show_main_slu_database">Show Main Slu DataBase</string>
+    <string name="show_infromation_on_map">Show Infromation On Map</string>
+    <string name="search_information_on_tables">Search Information On Tables</string>
+    <string name="enter_phonenr">Enter phoneNr</string>
+    <string name="register">Register</string>
+    <string name="already_have_an_account_press_here">Already have an Account? press here!</string>
+    <string name="registration">Registration</string>
+
+
 </resources>

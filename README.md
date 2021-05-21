@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 ## Fiskekort
+=======
+# Fiskekort
+>>>>>>> dev

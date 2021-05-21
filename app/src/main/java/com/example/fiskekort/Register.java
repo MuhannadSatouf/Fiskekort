@@ -1,11 +1,8 @@
 package com.example.fiskekort;
 
 
-import androidx.appcompat.app.AppCompatActivity;
-
-
+import android.annotation.SuppressLint;
 import android.content.Context;
-
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -15,14 +12,14 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.fiskekort.DB.DBMethod;
+import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.fiskekort.DB.DBMethod;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
-import com.satouf.fiskekort.R;
 
 import java.util.Objects;
 
@@ -50,6 +47,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         progressBar = findViewById(R.id.progressBar);
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -60,7 +58,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
             case R.id.textReturnToLogin:
                 finish();
                 break;
-
         }
     }
 
@@ -71,38 +68,32 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         String phoneNumber = editTextPhone.getText().toString().trim();
 
         if (name.isEmpty()) {
-            editTextfullname.setError("please provide you full name");
-            editTextfullname.requestFocus();
+            errorMessage(editTextfullname, "please provide you full name");
             return;
         }
 
         if (email.isEmpty()) {
-            editTextEmail.setError("please provide valid email");
-            editTextEmail.requestFocus();
+
+            errorMessage(editTextEmail, "please provide valid email");
             return;
 
         }
 
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            editTextEmail.setError("Please provide valid email");
-            editTextEmail.requestFocus();
+            errorMessage(editTextEmail, "Please provide valid email");
             return;
         }
 
-
         if (password.isEmpty()) {
-            editTextPassword.setError("Please provide Password");
-            editTextPassword.requestFocus();
+            errorMessage(editTextPassword, "Please provide Password");
             return;
         }
 
         if (password.length() < 8) {
-            editTextPassword.setError("min password length should be 8 characters");
-            editTextPassword.requestFocus();
+            errorMessage(editTextPassword, "min password length should be 8 characters");
             return;
         }
 
-        progressBar.setVisibility(View.VISIBLE);
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
@@ -116,7 +107,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                                 if (task1.isSuccessful()) {
                                     createToast("User has been registered successfully", Register.this);
                                     finish();
-                                    progressBar.setVisibility(View.INVISIBLE);
                                 } else {
                                     createToast("Failed to register! Try again", Register.this);
                                 }
@@ -144,6 +134,11 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
     public void createToast(String text, Context context) {
         Toast.makeText(context, text, Toast.LENGTH_LONG).show();
+    }
+
+    public void errorMessage(EditText editText, String text) {
+        editText.setError(text);
+        editText.requestFocus();
     }
 }
 

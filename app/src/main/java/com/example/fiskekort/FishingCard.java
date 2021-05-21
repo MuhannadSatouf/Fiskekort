@@ -1,23 +1,42 @@
 package com.example.fiskekort;
 
-
-import java.util.Date;
-
 public class FishingCard {
     private String cardNumber;
     private String startDate;
     private String finishDate;
-    private User owner;
+    //  private User owner;
+    private LocationType locationType;
+    private Municipality municipality;
+    private Lake lake;
 
     public FishingCard(User owner, String cardNumber, String startDate, String finishDate) {
         this.cardNumber = cardNumber;
         this.startDate = startDate;
         this.finishDate = finishDate;
-        this.owner = owner;
+        // this.owner = owner;   // is owner needed at all? it will be on his phone...
     }
 
-    public FishingCard(String cardNumber, String startDate, String finishDate) {
+    public FishingCard(String cardNumber, String startDate, String finishDate) {   //please, add areas where user is allowed to do fishing
+        this.cardNumber = cardNumber;
+        this.startDate = startDate;
+        this.finishDate = finishDate;
 
+    }
+
+    public FishingCard(String startDate, String finishDate, LocationType locationType, Municipality municipality, Lake lake) {
+        setStartDate(startDate);
+        setFinishDate(finishDate);
+        setLocationType(locationType);
+        setMunicipality(municipality);
+        setLake(lake);
+    }
+
+    public FishingCard(String startDate, String finishDate, LocationType locationType, Municipality municipality) {
+        setStartDate(startDate);
+        setFinishDate(finishDate);
+        setLocationType(locationType);
+        setMunicipality(municipality);
+        setLake(null);
     }
 
     public String getCardNumber() {
@@ -44,11 +63,37 @@ public class FishingCard {
         this.finishDate = finishDate;
     }
 
-    public User getOwner() {
-        return owner;
+    public LocationType getLocationType() {
+        return locationType;
     }
 
-    public void setOwner(User owner) {
-        this.owner = owner;
+    public void setLocationType(LocationType locationType) {
+        this.locationType = locationType;
+    }
+
+    public Municipality getMunicipality() {
+        return municipality;
+    }
+
+    public void setMunicipality(Municipality municipality) {
+        this.municipality = municipality;
+    }
+
+    public Lake getLake() {
+        if (lake == null)
+            return lake = new Lake("All lakes within municipality", 0, 0);
+        return lake;
+    }
+
+    public void setLake(Lake lake) {
+        this.lake = lake;
+    }
+
+    @Override
+    public String toString() {
+        return "from '" + startDate + '\'' +
+                ", to '" + finishDate + '\'' +
+                " " + municipality +
+                " " + lake;
     }
 }

@@ -8,12 +8,14 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="licence_color1">#f1755b</color>
-    <color name="licence_color2">#5cb187</color>
-    <color name="licence_color3">#b05777</color>
-    <color name="licence_color4">#eebe5c</color>
-    <color name="licence_color5">#8778e9</color>
-    <color name="licence_Primary">#ffffff</color>
-    <color name="licence_PrimaryDark">#ffffff</color>
-    <color name="licence_Accent">#f2f2f2</color>
+
+    <color name="primary">#2196F3</color>
+    <color name="DarkPrimaryTextColor">#1976D2</color>
+    <color name="lightPrimary">#BBDEFB</color>
+
+    <color name="text_and_icons">#FFFFFF</color>
+    <color name="primaryTextColor">#ffffff</color>
+    <color name="accent">#00BCD4</color>
+
+
 </resources>
