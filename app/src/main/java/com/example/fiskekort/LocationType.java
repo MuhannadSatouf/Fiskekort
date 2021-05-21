@@ -1,8 +1,8 @@
 package com.example.fiskekort;
 
 public enum LocationType {
-    MUNICIPALITY("Kommun"),
-    WATER("Sjö");
+    MUNICIPALITY("Municipality"),
+    WATER("Single Lake");
 
 
     private final String value;
