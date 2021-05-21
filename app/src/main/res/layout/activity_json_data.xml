@@ -4,65 +4,70 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/fishing_background"
     tools:context=".JsonData">
 
     <ListView
         android:id="@+id/listviewFish"
-        android:layout_width="392dp"
-        android:layout_height="512dp"
+        android:layout_width="399dp"
+        android:layout_height="520dp"
         android:layout_marginStart="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnImmeln" />
 
-    <Button
+        app:layout_constraintTop_toBottomOf="@+id/btnClear" />
+
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnTjörnarp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/button_desgine2"
         android:text="Tjörnarpssjön"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnRönne"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="16dp"
+        android:background="@drawable/button_desgine2"
         android:text="RönneSjön"
-        app:layout_constraintStart_toEndOf="@+id/btnTjörnarp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnClear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/button_desgine2"
         android:text="clear"
-        app:layout_constraintStart_toEndOf="@+id/btnRingSjön"
-        app:layout_constraintTop_toBottomOf="@+id/btnRönne" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnImmeln" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnImmeln"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:background="@drawable/button_desgine2"
         android:text="Immeln"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnTjörnarp" />
+        app:layout_constraintEnd_toStartOf="@+id/btnRingSjön"
+        app:layout_constraintStart_toEndOf="@+id/btnTjörnarp"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnRingSjön"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/button_desgine2"
         android:text="Ringsjön"
-        app:layout_constraintStart_toEndOf="@+id/btnImmeln"
-        app:layout_constraintTop_toBottomOf="@+id/btnRönne" />
+        app:layout_constraintEnd_toStartOf="@+id/btnRönne"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

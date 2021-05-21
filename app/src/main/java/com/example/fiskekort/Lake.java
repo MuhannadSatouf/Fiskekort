@@ -6,7 +6,7 @@ public class Lake {
     double latitude;
     double longitude;
 
-    public Lake(String name, double latitude, double longitude){
+    public Lake(String name, double latitude, double longitude) {
         this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;

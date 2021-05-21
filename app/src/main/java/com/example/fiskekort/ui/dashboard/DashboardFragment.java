@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -31,10 +30,9 @@ import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 import java.text.ParseException;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
 
 public class DashboardFragment extends Fragment implements AdapterView.OnItemSelectedListener {
     private EditText textInput;
@@ -105,11 +103,16 @@ public class DashboardFragment extends Fragment implements AdapterView.OnItemSel
     }
 
     public void generateImages() throws ParseException {
+
         cardList = localDatabaseAdapter.getAllCards();
         MultiFormatWriter writer = new MultiFormatWriter();
         for (int i = 0; i < cardList.size(); i++) {
             String printQr = cardList.get(i);
             try {
+
+                for (int j = 0; j < cardList.size(); j++) {
+                    compareDate(convertStringToDate(expiredDate));
+                }
                 BitMatrix matrix = writer.encode(printQr, BarcodeFormat.QR_CODE, 350, 350);
                 BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
                 Bitmap bitmap = barcodeEncoder.createBitmap(matrix);
@@ -120,34 +123,51 @@ public class DashboardFragment extends Fragment implements AdapterView.OnItemSel
             }
         }
 
-
     }
 
-    public ArrayList<DateTimeFormatter> convertStringToDate(ArrayList<String> expiredDate) throws ParseException {
-        ArrayList<DateTimeFormatter> convertedDate = new ArrayList<>();
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-M-d", Locale.ENGLISH);
-        for (int i = 0; i <= expiredDate.size(); i++) {
-            dateTimeFormatter = dateTimeFormatter.ofPattern(expiredDate.get(i));
-            System.out.println(expiredDate.get(i) + "\t" + dateTimeFormatter);
-            convertedDate.add(dateTimeFormatter);
+    public ArrayList<LocalDate> convertStringToDate(ArrayList<String> expiredDate) {
+        ArrayList<LocalDate> convertedDate = new ArrayList<>();
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-M-d");
+
+
+        for (int i = 0; i < expiredDate.size(); i++) {
+
+            dateTimeFormatter = dateTimeFormatter.ofPattern("yyyy-M-d");
+            String s = expiredDate.get(i);
+
+            LocalDate localDate = LocalDate.parse(s, dateTimeFormatter);
+            System.out.println(localDate);
+
+            System.out.println(expiredDate.get(i) + " " + dateTimeFormatter);
+            convertedDate.add(localDate);
         }
 
         return convertedDate;
     }
 
-    public void compareDate(ArrayList<Date> convertedDate) {
+    public void compareDate(ArrayList<LocalDate> convertedDate) {
         Calendar c = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("YYYY/MM/dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String getCurrentDateTime = sdf.format(c.getTime());
+        //DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-M-d");
+        //String getCurrentDateTime = dateTimeFormatter.format((TemporalAccessor) c.getTime());
 
 
         for (int i = 0; i < convertedDate.size(); i++) {
+            System.out.println(getCurrentDateTime + " " + String.valueOf(convertedDate));
+            LocalDate date = convertedDate.get(i);
+            if (getCurrentDateTime.compareTo(String.valueOf(date)) < 0) {
+                String s = String.valueOf(convertedDate.get(i));
 
-            if (getCurrentDateTime.compareTo(String.valueOf(convertedDate)) < 0) {
-            } else {
-                localDatabaseAdapter.delete(String.valueOf(convertedDate.get(i)));
+
                 Log.d("Return", "getMyTime older than getCurrentDateTime ");
+
+
+            } else if (getCurrentDateTime.compareTo(String.valueOf(date)) > 0) {
+                localDatabaseAdapter.delete(String.valueOf(convertedDate.get(i)));
+                Log.d("Return", "getMyTime newer than getCurrentDateTime ");
             }
+            Log.d("Return", "getMyTime Same ");
         }
     }
 }

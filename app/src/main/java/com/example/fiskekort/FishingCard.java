@@ -4,7 +4,7 @@ public class FishingCard {
     private String cardNumber;
     private String startDate;
     private String finishDate;
-  //  private User owner;
+    //  private User owner;
     private LocationType locationType;
     private Municipality municipality;
     private Lake lake;
@@ -13,17 +13,17 @@ public class FishingCard {
         this.cardNumber = cardNumber;
         this.startDate = startDate;
         this.finishDate = finishDate;
-       // this.owner = owner;   // is owner needed at all? it will be on his phone...
+        // this.owner = owner;   // is owner needed at all? it will be on his phone...
     }
 
     public FishingCard(String cardNumber, String startDate, String finishDate) {   //please, add areas where user is allowed to do fishing
-                this.cardNumber=cardNumber;
-                this.startDate=startDate;
-                this.finishDate=finishDate;
+        this.cardNumber = cardNumber;
+        this.startDate = startDate;
+        this.finishDate = finishDate;
 
     }
 
-    public FishingCard(String startDate, String finishDate, LocationType locationType, Municipality municipality, Lake lake){
+    public FishingCard(String startDate, String finishDate, LocationType locationType, Municipality municipality, Lake lake) {
         setStartDate(startDate);
         setFinishDate(finishDate);
         setLocationType(locationType);
@@ -31,7 +31,7 @@ public class FishingCard {
         setLake(lake);
     }
 
-    public FishingCard(String startDate, String finishDate, LocationType locationType, Municipality municipality){
+    public FishingCard(String startDate, String finishDate, LocationType locationType, Municipality municipality) {
         setStartDate(startDate);
         setFinishDate(finishDate);
         setLocationType(locationType);

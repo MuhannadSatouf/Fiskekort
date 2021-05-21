@@ -1,10 +1,9 @@
 package com.example.fiskekort.LocalDB;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.content.ContentValues;
-import android.database.Cursor;
 
 
 public class LocalDatabaseHelper extends SQLiteOpenHelper {
@@ -49,12 +48,4 @@ public class LocalDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public Cursor viewData(){
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        String query = "select * from "+ TABLE_NAME;
-        Cursor cursor = db.rawQuery(query,null);
-        return cursor;
-
-    }
 }

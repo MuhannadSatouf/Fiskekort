@@ -1,12 +1,8 @@
 package com.example.fiskekort;
 
 
-import androidx.appcompat.app.AppCompatActivity;
-
-
 import android.annotation.SuppressLint;
 import android.content.Context;
-
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -16,14 +12,14 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.fiskekort.DB.DBMethod;
+import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.fiskekort.DB.DBMethod;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
-import com.example.fiskekort.R;
 
 import java.util.Objects;
 

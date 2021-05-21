@@ -1,6 +1,6 @@
 package com.example.fiskekort;
 
-public class Municipality{
+public class Municipality {
     private String name;
 
     public Municipality(String name) {

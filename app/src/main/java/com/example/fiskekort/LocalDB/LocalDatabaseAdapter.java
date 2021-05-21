@@ -21,9 +21,6 @@ public class LocalDatabaseAdapter {
         localDatabaseHelper = new LocalDatabaseHelper(context);
     }
 
-
-    //FishingCard(String startDate, String finishDate, LocationType locationType, Municipality municipality, Lake lake)
-
     public long insertDataAsObject(FishingCard fishingCard) {
         SQLiteDatabase dbb = localDatabaseHelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -111,30 +108,7 @@ public class LocalDatabaseAdapter {
         return buffer.toString();
     }
 
-    public ArrayList<FishingCard> getListOfData() {
-        ArrayList<FishingCard> cardList = new ArrayList<>();
 
-        sqLiteDatabase = localDatabaseHelper.getReadableDatabase();
-        String[] field = {LocalDatabaseHelper.CARD_ID, LocalDatabaseHelper.START_DATE, LocalDatabaseHelper.FINISH_DATE};
-        Cursor c = sqLiteDatabase.query(LocalDatabaseHelper.TABLE_NAME, field, null, null, null, null, null);
-
-        int id = c.getColumnIndex(LocalDatabaseHelper.CARD_ID);
-        int startDate = c.getColumnIndex(LocalDatabaseHelper.START_DATE);
-        int finishDate = c.getColumnIndex(LocalDatabaseHelper.FINISH_DATE);
-
-        for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
-            String cardId = c.getString(id);
-            String startDateString = c.getString(startDate);
-            String finishDateString = c.getString(finishDate);
-            cardList.add(new FishingCard(cardId, startDateString, finishDateString));
-
-        }
-
-        return cardList;
-    }
-
-
-    //FishingCard(String startDate, String finishDate, LocationType locationType, Municipality municipality, Lake lake)
     public ArrayList<String> getAllCards() {
         ArrayList<String> cardList = new ArrayList<>();
 
@@ -176,13 +150,6 @@ public class LocalDatabaseAdapter {
         return count;
     }
 
-
-    public void deleteAllRows() {
-        SQLiteDatabase db = localDatabaseHelper.getWritableDatabase();
-        db.execSQL("delete from " + LocalDatabaseHelper.TABLE_NAME);
-
-    }
-
     public int updateDate(String old_start_date, String new_start_date) {
         SQLiteDatabase db = localDatabaseHelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -192,9 +159,7 @@ public class LocalDatabaseAdapter {
         return count;
     }
 
-
     public class LocalDatabaseHelper extends SQLiteOpenHelper {
-        //FishingCard(String startDate, String finishDate, LocationType locationType, Municipality municipality, Lake lake)
 
         private static final String DATABASE_NAME = "card_local_database";
         private static final String TABLE_NAME = "card";

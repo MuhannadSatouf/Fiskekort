@@ -36,5 +36,13 @@
     <string name="enter_email">Enter Email</string>
     <string name="enter_password">Enter PassWord</string>
     <string name="enter_name">Enter Name</string>
+    <string name="show_main_slu_database">Show Main Slu DataBase</string>
+    <string name="show_infromation_on_map">Show Infromation On Map</string>
+    <string name="search_information_on_tables">Search Information On Tables</string>
+    <string name="enter_phonenr">Enter phoneNr</string>
+    <string name="register">Register</string>
+    <string name="already_have_an_account_press_here">Already have an Account? press here!</string>
+    <string name="registration">Registration</string>
+
 
 </resources>

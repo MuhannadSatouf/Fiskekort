@@ -140,7 +140,7 @@ public class Location {
         Lake finjasjon = new Lake("Finjasjön", 56.1344074624344, 13.702793975891582);
         lakes.add(bronaSjo);
         lakes.add(finjasjon);
-  //21-22
+        //21-22
 
         //Höör
         Lake satoftasjon = new Lake("Sätoftasjön", 55.89389461425486, 13.546725777791218);
@@ -154,37 +154,37 @@ public class Location {
         //Östra Göinge
         Lake immeln = new Lake("Immeln", 56.280004474466324, 14.332962337525835);
         lakes.add(immeln);
- //26
+        //26
 
         Lake all = new Lake("All lakes within municipality", 0, 0);
         lakes.add(all);
         return lakes;
     }
 
-    public String[] getAllMunicipalityNames(){
+    public String[] getAllMunicipalityNames() {
         String[] names = new String[getAreas().size()];
         int i = 0;
-        for (Area a: getAreas()) {
+        for (Area a : getAreas()) {
             names[i] = a.getMun().getName();
             i++;
         }
         return names;
     }
 
-    public String[] getLakesNamesByArea(String municipalityName){
+    public String[] getLakesNamesByArea(String municipalityName) {
         String[] names = new String[getLakesByArea(municipalityName).length];
         int i = 0;
-        for (Lake l: getLakesByArea(municipalityName)) {
+        for (Lake l : getLakesByArea(municipalityName)) {
             names[i] = l.getName();
             i++;
         }
         return names;
     }
 
-    public Lake getLakeByMunAndName(String municName, String lakeName){
+    public Lake getLakeByMunAndName(String municName, String lakeName) {
         Lake[] tmp = getLakesByArea(municName);
         for (int i = 0; i < tmp.length; i++) {
-            if (tmp[i].getName().equals(lakeName)){
+            if (tmp[i].getName().equals(lakeName)) {
                 return tmp[i];
             }
         }

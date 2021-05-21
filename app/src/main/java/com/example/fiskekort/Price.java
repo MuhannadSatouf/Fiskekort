@@ -3,7 +3,7 @@ package com.example.fiskekort;
 public class Price {
     double price;
 
-    public double getPrice(Duration period, LocationType level){
+    public double getPrice(Duration period, LocationType level) {
         switch (period) {
             case ONE_DAY:
                 price = 80;

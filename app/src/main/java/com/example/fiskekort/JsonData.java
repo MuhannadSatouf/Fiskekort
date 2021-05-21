@@ -1,12 +1,11 @@
 package com.example.fiskekort;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,6 +29,7 @@ public class JsonData extends AppCompatActivity {
 
         btnRingsjön = findViewById(R.id.btnRingSjön);
         btnRingsjön.setOnClickListener(v -> {
+            jsonData.clear();
             getRingsjön();
         });
 
@@ -41,22 +41,24 @@ public class JsonData extends AppCompatActivity {
 
         btnRönne = findViewById(R.id.btnRönne);
         btnRönne.setOnClickListener(v -> {
+            jsonData.clear();
             getRönneSjön();
         });
 
         btnTjörnarp = findViewById(R.id.btnTjörnarp);
         btnTjörnarp.setOnClickListener(v -> {
-
+            jsonData.clear();
             getTjörnarpsjön();
         });
         btnImmeln = findViewById(R.id.btnImmeln);
-        btnImmeln.setOnClickListener(v -> {getImmeln();});
+        btnImmeln.setOnClickListener(v -> {
+            jsonData.clear();
+            getImmeln();
+        });
     }
 
     public void getTjörnarpsjön() {
         String json;
-
-
         try {
             InputStream is = getAssets().open("Tjörnarpasjön.json");
             int size = is.available();
@@ -161,7 +163,9 @@ public class JsonData extends AppCompatActivity {
         } catch (IOException | JSONException e) {
             e.printStackTrace();
         }
-    }public void getImmeln(){
+    }
+
+    public void getImmeln() {
         String json;
 
 
@@ -172,25 +176,24 @@ public class JsonData extends AppCompatActivity {
             is.read(buffer);
             is.close();
 
-            json = new String(buffer,"UTF-8");
+            json = new String(buffer, "UTF-8");
             JSONArray jsonArray = new JSONArray(json);
 
 
-            for (int i = 0; i<jsonArray.length();i++){
+            for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                if (jsonObject.getString("Län").equals("Skåne Län")){
+                if (jsonObject.getString("Län").equals("Skåne Län")) {
                     jsonData.add("Datum " + jsonObject.getString("Datum"));
                     jsonData.add("Art: " + jsonObject.getString("Art"));
                     jsonData.add("Antal: " + jsonObject.getString("Antal"));
                     jsonData.add("Vikt: " + jsonObject.getString("Vikt"));
 
                 }
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,jsonData);
-                if (listViewFish != null){
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, jsonData);
+                if (listViewFish != null) {
                     listViewFish.setAdapter(adapter);
                 }
             }
-
 
 
         } catch (IOException | JSONException e) {

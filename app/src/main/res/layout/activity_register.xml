@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background11"
+    android:background="@drawable/fishing_background"
     tools:context=".Register">
 
     <EditText
@@ -13,21 +13,21 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
+        android:autofillHints=""
         android:background="@drawable/input_bg"
         android:drawableStart="@drawable/ic_security"
         android:drawablePadding="10dp"
         android:ems="10"
         android:hint="Enter Password"
         android:inputType="textPassword"
-        android:paddingLeft="20dp"
+        android:paddingStart="20dp"
         android:paddingTop="10dp"
-        android:paddingRight="10dp"
+        android:paddingEnd="10dp"
         android:paddingBottom="10dp"
         android:textColorHint="@color/primaryTextColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textEmail"
-        android:autofillHints="" />
+        app:layout_constraintTop_toBottomOf="@+id/textEmail" />
 
     <EditText
         android:id="@+id/textName"
@@ -36,22 +36,22 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="228dp"
         android:layout_marginEnd="32dp"
+        android:autofillHints=""
         android:background="@drawable/input_bg"
         android:drawableStart="@drawable/ic_person"
         android:drawablePadding="10dp"
         android:ems="10"
         android:hint="@string/enter_name"
         android:inputType="textPersonName"
-        android:paddingLeft="20dp"
+        android:paddingStart="20dp"
         android:paddingTop="10dp"
-        android:paddingRight="10dp"
+        android:paddingEnd="10dp"
         android:paddingBottom="10dp"
         android:textColorHint="@color/primaryTextColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:autofillHints="" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/textEmail"
@@ -60,19 +60,20 @@
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/input_bg"
-        android:drawableLeft="@drawable/ic_email"
+        android:drawableStart="@drawable/ic_email"
         android:drawablePadding="10dp"
         android:ems="10"
-        android:hint="Enter Email"
+        android:hint="@string/enter_email"
         android:inputType="textPersonName"
-        android:paddingLeft="20dp"
+        android:paddingStart="20dp"
         android:paddingTop="10dp"
-        android:paddingRight="10dp"
+        android:paddingEnd="10dp"
         android:paddingBottom="10dp"
         android:textColorHint="@color/primaryTextColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textName" />
+        app:layout_constraintTop_toBottomOf="@+id/textName"
+        tools:ignore="TextFields" />
 
     <EditText
         android:id="@+id/phoneNr"
@@ -81,21 +82,22 @@
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/input_bg"
-        android:drawableLeft="@drawable/ic_phone"
+        android:drawableStart="@drawable/ic_phone"
         android:drawablePadding="10dp"
         android:ems="10"
-        android:hint="Enter phoneNr"
+        android:hint="@string/enter_phonenr"
         android:inputType="textPhonetic"
-        android:paddingLeft="20dp"
+        android:paddingStart="20dp"
         android:paddingTop="10dp"
-        android:paddingRight="10dp"
+        android:paddingEnd="10dp"
         android:paddingBottom="10dp"
         android:textColorHint="@color/primaryTextColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passWordText" />
+        app:layout_constraintTop_toBottomOf="@+id/passWordText"
+        tools:ignore="TextFields" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/registerButton"
         android:layout_width="0dp"
         android:layout_height="40dp"
@@ -103,7 +105,7 @@
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="25dp"
         android:background="@drawable/button_desgine2"
-        android:hint="Register"
+        android:hint="@string/register"
         android:textColorHint="@color/primaryTextColor"
         app:layout_constraintBottom_toTopOf="@+id/textReturnToLogin"
         app:layout_constraintEnd_toEndOf="@+id/phoneNr"
@@ -131,18 +133,19 @@
         android:layout_marginBottom="52dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Already have an Account? press here!"
+        android:text="@string/already_have_an_account_press_here"
         android:textColor="@color/lightPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TextViewEdits" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="88dp"
-        android:text="Registration"
+        android:text="@string/registration"
         android:textColor="@color/primaryTextColor"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
