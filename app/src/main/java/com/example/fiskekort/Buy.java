@@ -96,6 +96,10 @@ public class Buy extends AppCompatActivity {
         });
 
         final RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radio_group);
+        final RadioButton rbMun = findViewById(R.id.rb_municipality);
+        rbMun.setText(LocationType.MUNICIPALITY.getValue());
+        final RadioButton rbLake = findViewById(R.id.rb_lake);
+        rbLake.setText(LocationType.WATER.getValue());
         final RadioGroup rgMun = (RadioGroup) findViewById(R.id.rg_municipality);
 
         String[] municipalities = location.getAllMunicipalityNames();
@@ -104,7 +108,7 @@ public class Buy extends AppCompatActivity {
         radioGroup.setOnCheckedChangeListener((RadioGroup.OnCheckedChangeListener) (group, checkedId) -> {
             RadioButton radioBtn = (RadioButton) findViewById(radioGroup.getCheckedRadioButtonId());
 
-            if (radioBtn.getText().equals("Municipality")) {
+            if (radioBtn.getText().equals(LocationType.MUNICIPALITY.getValue())) {
                 if (ft != null){
                     ft.remove(fragment);
                 }
@@ -134,7 +138,7 @@ public class Buy extends AppCompatActivity {
                 Toast.makeText(Buy.this, R.string.warning_missing_date, Toast.LENGTH_SHORT).show();
             } else if (radioBtnMun == null) {
                 Toast.makeText(Buy.this, R.string.warning_missing_municipality, Toast.LENGTH_SHORT).show();
-            } else if (radioBtnArea.getText().equals("Single Lake")) {
+            } else if (radioBtnArea.getText().equals(LocationType.WATER.getValue())) {
                 if ((lake_ == null) || (lake_.isEmpty())) {
                     Toast.makeText(Buy.this, R.string.warning_missing_lake, Toast.LENGTH_SHORT).show();
                 } else {
@@ -144,7 +148,7 @@ public class Buy extends AppCompatActivity {
 
                     createLicense(choices, duration, String.valueOf(date.getText()));
                 }
-            } else if (radioBtnArea.getText().equals("Municipality")) {
+            } else if (radioBtnArea.getText().equals(LocationType.MUNICIPALITY.getValue())) {
                 choices[0] = String.valueOf(radioBtnArea.getText());
                 choices[1] = String.valueOf(radioBtnMun.getText());
                 choices[2] = " ";
@@ -177,12 +181,14 @@ public class Buy extends AppCompatActivity {
         LocalDatabaseAdapter localDatabaseAdapter = new LocalDatabaseAdapter(getApplicationContext());
 
         FishingCard fc;
-        if (choices[0].equals("Municipality")) {
-            fc = new FishingCard(startDate, endDate, LocationType.MUNICIPALITY, new Municipality(choices[1]));
+        if (choices[0].equals(LocationType.MUNICIPALITY.getValue())) {
+            fc = new FishingCard(startDate, endDate, LocationType.MUNICIPALITY,
+                    new Municipality(choices[1]));
             p.getPrice(duration, LocationType.MUNICIPALITY);
 
         } else {
-            fc = new FishingCard(startDate, endDate, LocationType.WATER, new Municipality(choices[1]), location.getLakeByMunAndName(choices[1], choices[2]));
+            fc = new FishingCard(startDate, endDate, LocationType.WATER, new Municipality(choices[1]),
+                    location.getLakeByMunAndName(choices[1], choices[2]));
             System.out.println(fc);
             p.getPrice(duration, LocationType.WATER);
         }
